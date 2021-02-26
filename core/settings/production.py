@@ -7,7 +7,7 @@ from .base import *  # noqa
 # ------------------------------------------------------------------------------
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-DJANGO_ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(",")
+DJANGO_ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS').split(",")
 ALLOWED_HOSTS = list(DJANGO_ALLOWED_HOSTS)
 
 # ------------------------------------------------------------------------------
