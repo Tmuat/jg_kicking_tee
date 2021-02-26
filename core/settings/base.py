@@ -86,37 +86,37 @@ DJANGO_APPS = [
     "django.forms",
 ]
 
-# THIRD_PARTY_APPS = [
-#     'allauth',
-#     'allauth.account',
-#     'allauth.socialaccount',
-# ]
+THIRD_PARTY_APPS = [
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+]
 
 LOCAL_APPS = [
     'users',
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # ------------------------------------------------------------------------------
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
-# AUTHENTICATION_BACKENDS = [
-#     "django.contrib.auth.backends.ModelBackend",
-#     "allauth.account.auth_backends.AuthenticationBackend",
-# ]
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = 'users.CustomUser'
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-# LOGIN_REDIRECT_URL = "users:redirect"
+LOGIN_REDIRECT_URL = '/'
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-# LOGIN_URL = "account_login"
+LOGIN_URL = '/accounts/login/'
 
 # ------------------------------------------------------------------------------
 # MIDDLEWARE
@@ -170,7 +170,7 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            # os.path.join(BASE_DIR, 'templates', 'allauth'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -222,14 +222,12 @@ X_FRAME_OPTIONS = "DENY"
 # django-allauth
 # ------------------------------------------------------------------------------
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-# ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True) # noqa
-# 
-# ACCOUNT_AUTHENTICATION_METHOD = "username"
-# 
-# ACCOUNT_EMAIL_REQUIRED = True
-#
-# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-# 
-# ACCOUNT_ADAPTER = "{{cookiecutter.project_slug}}.users.adapters.AccountAdapter" # noqa
-# 
-# SOCIALACCOUNT_ADAPTER = "{{cookiecutter.project_slug}}.users.adapters.SocialAccountAdapter" # noqa
+ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True) # noqa
+
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
