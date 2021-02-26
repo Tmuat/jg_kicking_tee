@@ -7,7 +7,7 @@
 
 ---
 
-![JG Logo](https://github.com/Tmuat/jg-kicking/blob/master/assets/images/JG_Logo_%20black.png "JG Logo")
+![JG Logo](https://github.com/Tmuat/jg_kicking_tee/blob/master/assets/images/JG_Logo_%20black.png "JG Logo")
 
 A standard style for README files
 
