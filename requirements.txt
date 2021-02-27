@@ -1,3 +1,4 @@
+argon2==0.1.10
 asgiref==3.3.1
 boto3==1.17.16
 botocore==1.20.16
@@ -7,7 +8,6 @@ django-allauth==0.44.0
 django-debug-toolbar==3.2
 django-environ==0.4.5
 django-storages==1.11.1
-flake8-django==1.1.1
 gunicorn==20.0.4
 jmespath==0.10.0
 oauthlib==3.1.0
