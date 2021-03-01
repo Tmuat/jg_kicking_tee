@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% endblock %}
+
 {% block content %}
-    <h1>Hi</h1>
+    <section class="index-bg" style="background: url('{% static 'images/index/jg_kicking.jpg' %}');">
+        <div class="overlay">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 my-auto">
+                        <h1 class="landing-text logo-font">Jimmy G Kicking Tee</h1>
+                        <div>
+                            <a href="" class="shop-now-button btn btn-lg rounded-0 btn-primary logo-font">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
