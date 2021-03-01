@@ -207,7 +207,7 @@ X_FRAME_OPTIONS = "DENY"
 # ------------------------------------------------------------------------------
 
 # Django Admin URL.
-# ADMIN_URL = env("DJANGO_ADMIN_URL", "admin/")
+ADMIN_URL = env("DJANGO_ADMIN_URL")
 
 # ------------------------------------------------------------------------------
 # LOGGING
