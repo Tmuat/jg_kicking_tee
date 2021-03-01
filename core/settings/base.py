@@ -29,7 +29,6 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool("DJANGO_DEBUG", False)
-print(DEBUG)
 
 # https://docs.djangoproject.com/en/3.1/ref/contrib/messages/
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -89,6 +88,7 @@ THIRD_PARTY_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'admin_honeypot',
 ]
 
 LOCAL_APPS = [
