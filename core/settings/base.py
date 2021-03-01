@@ -209,6 +209,12 @@ X_FRAME_OPTIONS = "DENY"
 # Django Admin URL.
 ADMIN_URL = env("DJANGO_ADMIN_URL")
 
+# https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMINS = [(env.str("DJANGO_ADMIN_NAME"), env.str("DJANGO_ADMIN_EMAIL"))]
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#managers
+MANAGERS = ADMINS
+
 # ------------------------------------------------------------------------------
 # LOGGING
 # ------------------------------------------------------------------------------
@@ -223,7 +229,7 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True) # noqa
 
-ACCOUNT_AUTHENTICATION_METHOD = "username"
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 
 ACCOUNT_EMAIL_REQUIRED = True
 
