@@ -1,4 +1,5 @@
 argon2==0.1.10
+argon2-cffi==20.1.0
 asgiref==3.3.1
 boto3==1.17.16
 botocore==1.20.16
