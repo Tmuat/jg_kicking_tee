@@ -16,8 +16,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Settings for Django-environ
 # https://django-environ.readthedocs.io/en/latest/#
 env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
 )
 # Reading .env file
 environ.Env.read_env()
@@ -30,7 +28,8 @@ environ.Env.read_env()
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = env("DJANGO_DEBUG")
+DEBUG = env.bool("DJANGO_DEBUG", False)
+print(DEBUG)
 
 # https://docs.djangoproject.com/en/3.1/ref/contrib/messages/
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
