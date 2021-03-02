@@ -1,3 +1,6 @@
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 from .base import env
 from .base import *  # noqa
 
@@ -92,6 +95,13 @@ AWS_SES_REGION_ENDPOINT = env('AWS_SES_REGION_ENDPOINT')
 # ------------------------------------------------------------------------------
 # Sentry
 # ------------------------------------------------------------------------------
+
+sentry_sdk.init(
+    dsn="https://bea410930d9945c097136292c84f0bff@o469529.ingest.sentry.io/5658499", # noqa
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
 
 # ------------------------------------------------------------------------------
 # ENVIRONMENT NOTICE
