@@ -25,6 +25,10 @@ body {
     background-color: rgba(0,0,0,0.6);
 }
 
+.bg-off-black {
+    background-color: #141414;
+}
+
 .bg-yellow {
     background-color: #FFC13A;
               border: 1px solid #FFC13A;
@@ -46,10 +50,29 @@ body {
 }
 
 .custom-navbar {
-        height: 60px;
-    box-shadow: 0 2px 4px 0 rgba(105, 98, 98, 0.2);
+    height: 80px;
 }
 
 .logo-font {
   text-transform: uppercase;
+}
+
+.dropdown-menu {
+    background-color: #000;
+}
+
+.dropdown-item {
+    color: rgba(255,255,255,.5);
+}
+
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+hr.menu-line {
+  border-top: 1px solid grey;
 }

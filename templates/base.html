@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
-    <link rel="icon" href="{% static 'images/favicon/favicon.ico' %}"/>
+    <link rel="icon" href="{% static 'images/favicon/favicon.ico' %}" />
     {% endblock %}
 
     {% block extra_css %}
@@ -46,20 +46,28 @@
 
 <body>
     <header class="container-fluid fixed-top navbar-dark bg-black custom-navbar">
-        <div class="row">
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+        
+        <!-- Main Nav -->
+        <div id="topnav" class="row bg-black pt-lg-2 d-none d-lg-flex">
+            <div class="col-12 col-lg-3 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link navbar-brand">
                     <img src="{% static 'images/logos/jg_logo_icon.png' %}" class="d-inline-block align-top nav-logo"
                         alt="" loading="lazy">
                 </a>
             </div>
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 justify-content-center">
-                <h1 class="text-center text-white logo-font m-0">Jimmy G Tee</h1>
+            <div class="col-12 col-lg-6 my-auto py-1 py-lg-0">
+                <nav class="navbar navbar-expand-lg navbar-dark w-100">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
+                        aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    {% include 'includes/nav/main-nav.html' %}
+                </nav>
             </div>
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
-                        <a class="nav-link text-white" href="#" id="user-options" data-toggle="dropdown"
+                        <a class="text-white nav-link" href="#" id="user-options" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
                                 <div><i class="fas fa-user fa-lg"></i></div>
@@ -96,6 +104,28 @@
                     </li>
                 </ul>
             </div>
+        </div>
+        
+        <!-- Tablet Nav -->
+        <div class="row bg-black d-none d-sm-flex d-lg-none">
+            <nav class="navbar navbar-expand-lg navbar-dark w-100">
+                <button class="navbar-toggler menu-right" type="button" data-toggle="collapse" data-target="#main-nav"
+                    aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon float-right"></span>
+                </button>
+                {% include 'includes/nav/tablet-nav.html' %}
+            </nav>
+        </div>
+        
+        <!-- Mobile Nav -->
+        <div class="row bg-black d-flex d-sm-none">
+            <nav class="navbar navbar-expand-lg navbar-dark w-100">
+                <button class="navbar-toggler menu-right" type="button" data-toggle="collapse" data-target="#main-nav"
+                    aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon float-right"></span>
+                </button>
+                {% include 'includes/nav/mobile-nav.html' %}
+            </nav>
         </div>
     </header>
 
