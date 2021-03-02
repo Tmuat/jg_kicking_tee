@@ -21,6 +21,24 @@ body {
     background-color: #000000;
 }
 
+.bg-opaque-black {
+    background-color: rgba(0,0,0,0.6);
+}
+
+.bg-yellow {
+    background-color: #FFC13A;
+              border: 1px solid #FFC13A;
+}
+
+.bg-yellow:hover,
+.bg-yellow:active,
+.bg-yellow:focus {
+               color: #FFC13A;
+    background-color: #000;
+}
+
+/* || Shadows */
+
 /* || Navbar */
 
 .nav-logo {
