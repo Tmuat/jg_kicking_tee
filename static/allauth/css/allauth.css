@@ -1,0 +1,27 @@
+.home-btn {
+    transition: all 0.3s ease 0s;
+        cursor: pointer;
+       outline: none;
+}
+
+.home-btn:hover,
+.home-btn:active,
+.home-btn:focus {
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+        color: #FFC13A;
+    transform: translateY(-3px);
+}
+
+.action-btn {
+    transition: all 0.3s ease 0s;
+        cursor: pointer;
+       outline: none;
+}
+
+.action-btn:hover,
+.action-btn:active,
+.action-btn:focus {
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+        color: #FFC13A;
+    transform: translateY(-3px);
+}
