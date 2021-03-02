@@ -221,6 +221,23 @@ ADMINS = [(env.str("DJANGO_ADMIN_NAME"), env.str("DJANGO_ADMIN_EMAIL"))]
 MANAGERS = ADMINS
 
 # ------------------------------------------------------------------------------
+# STATIC
+# ------------------------------------------------------------------------------
+
+# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )  # noqa
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # noqa
+
+# ------------------------------------------------------------------------------
+# MEDIA
+# ------------------------------------------------------------------------------
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # noqa
+
+# ------------------------------------------------------------------------------
 # django-allauth
 # ------------------------------------------------------------------------------
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
