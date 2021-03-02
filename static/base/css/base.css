@@ -1,0 +1,74 @@
+/* || Typography Imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap');
+
+/* || General */
+html,
+body {
+    /* height: 100%; */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* || Typography Colours */
+
+.text-custom-yellow {
+    color: #FFC13A;
+}
+
+/* || Colours */
+
+.bg-black {
+    background-color: #000000;
+}
+
+/* || Navbar */
+
+.nav-logo {
+    max-height: 44px;
+}
+
+.custom-navbar {
+        height: 60px;
+    box-shadow: 0 2px 4px 0 rgba(105, 98, 98, 0.2);
+}
+
+.logo-font {
+  text-transform: uppercase;
+}
+
+
+
+/* 
+
+.main-logo-link {
+    width: fit-content;
+}
+
+.shop-now-button {
+    background: black;
+    color: white;
+    min-width: 260px;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+} */
