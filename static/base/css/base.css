@@ -21,6 +21,17 @@ body {
     background-color: #000000;
 }
 
+.btn.bg-black {
+    color: #FFC13A;
+}
+
+.btn.bg-black:hover,
+.btn.bg-black:active,
+.btn.bg-black:focus {
+               color: #000;
+    background-color: #FFC13A;
+}
+
 .bg-opaque-black {
     background-color: rgba(0,0,0,0.6);
 }
@@ -31,7 +42,6 @@ body {
 
 .bg-yellow {
     background-color: #FFC13A;
-              border: 1px solid #FFC13A;
 }
 
 .bg-yellow:hover,
@@ -39,6 +49,26 @@ body {
 .bg-yellow:focus {
                color: #FFC13A;
     background-color: #000;
+}
+
+.border-yellow {
+    border: 1px solid #FFC13A;
+}
+
+.border-yellow:hover,
+.border-yellow:active,
+.border-yellow:focus {
+    border: 1px solid #000;
+}
+
+.border-black {
+    border: 1px solid #000;
+}
+
+.border-black:hover,
+.border-black:active,
+.border-black:focus {
+    border: 1px solid #FFC13A;
 }
 
 /* || Shadows */
@@ -81,4 +111,8 @@ body {
 
 hr.menu-line {
   border-top: 1px solid grey;
+}
+
+.header-container {
+    padding-top: 80px;
 }
