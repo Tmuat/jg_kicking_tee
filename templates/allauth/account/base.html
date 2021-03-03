@@ -7,12 +7,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container header-container">
-        <div class="row pt-5">
-            <div class="col-12 col-md-6">
-                <div class="allauth-form-inner-content">
-                    {% block inner_content %}
-                    {% endblock %}
+    <div class="bg-light-grey">
+        <div class="container landing-height">
+            <div class="row h-100">
+                <div class="col-12 col-sm-10 col-lg-8 offset-sm-1 offset-lg-2">
+                    <div class="allauth-form-inner-content text-center pt-5 pb-5">
+                        {% block inner_content %}
+                        {% endblock %}
+                    </div>
                 </div>
             </div>
         </div>
