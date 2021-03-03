@@ -85,6 +85,7 @@ MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+SERVER_EMAIL = env('DEFAULT_FROM_EMAIL')
 EMAIL_BACKEND = 'django_ses.SESBackend'
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
