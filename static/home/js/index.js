@@ -30,3 +30,20 @@ $(document).ready(function () {
         }
     });
 });
+
+
+// https://www.steckinsights.com/change-active-menu-as-you-scroll-with-jquery/
+$(document).ready(function () {
+    $(window).scroll(function () {
+        var Scroll = $(window).scrollTop() + 1,
+            SectionOneOffset = $('#gallery').offset().top;
+
+        if (Scroll >= SectionOneOffset) {
+            $(".menu-item-1").removeClass("active");
+            $(".menu-item-2").addClass("active");
+        } else {
+            $(".menu-item-1").addClass("active");
+            $(".menu-item-2").removeClass("active");
+        }
+    });
+});
