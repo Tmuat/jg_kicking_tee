@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-from .models import Image
+from .models import LandingImage, Testimonial
 
 
 class CustomImageAdmin(admin.ModelAdmin):
@@ -23,4 +23,26 @@ class CustomImageAdmin(admin.ModelAdmin):
         obj.save()
 
 
-admin.site.register(Image, CustomImageAdmin)
+admin.site.register(LandingImage, CustomImageAdmin)
+
+
+class CustomTestimonialAdmin(admin.ModelAdmin):
+    list_display = ('name',
+                    'active',
+                    'testimonial',
+                    'image',
+                    'created_by',
+                    'created_at'
+                    )
+    list_filter = ('name', 'active',)
+    search_fields = ('name',)
+    readonly_fields = ['created_by', 'created_at', 'updated_by', 'updated_at']
+
+    def save_model(self, request, obj, form, change):
+        if not obj.created_by:
+            obj.created_by = request.user.username
+        obj.updated_by = request.user.username
+        obj.save()
+
+
+admin.site.register(Testimonial, CustomTestimonialAdmin)
