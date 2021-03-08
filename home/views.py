@@ -19,8 +19,6 @@ def index(request):
     testimonial_qs = list(Testimonial.objects.filter(active=True))
     shuffle(testimonial_qs)
 
-    print(testimonial_qs)
-
     context = {
         'images': images_qs,
         'testimonials': testimonial_qs
