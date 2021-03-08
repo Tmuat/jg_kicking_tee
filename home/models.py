@@ -29,7 +29,7 @@ class LandingImage(UpdatedAndCreated):
 
     class Meta:
         verbose_name_plural = "Landing Images"
-        ordering = ['created_at']
+        ordering = ['image_location']
 
     def __str__(self):
         return self.image_location
@@ -46,3 +46,10 @@ class Testimonial(UpdatedAndCreated):
                               null=True,
                               blank=False)
     active = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = "Testimonials"
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
