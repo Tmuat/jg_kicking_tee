@@ -2,34 +2,71 @@
 {% load static %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
 <link rel="stylesheet" href="{% static 'home/css/index.css' %}">
 {% endblock %}
 
 {% block content %}
-    <section class="index-bg" style="background: url('{% static 'images/index/jg_kicking.jpg' %}');">
-        <div class="overlay">
-            <div class="container-fluid landing-height">
-                <div class="row landing-height">
-                    <div class="col-12 col-sm-11 col-md-9 col-lg-8 col-xl-7 my-auto mx-auto">
-                        <div class="card mx-auto w-100 p-3 text-center bg-opaque-black card-border">
-                            <h1 class="landing-text logo-font text-custom-yellow card-header">Jimmy G Tee</h1>
-                            <p class="text-white pl-3 pr-3 pb-2">The Jimmy G Tee is an adjustable kicking tee that has been used by some of the worlds best
-                                goal kickers including Andrew Mehrtens, Simon Culhane, John Earls, Dan Carter, Gavin Henson & 
-                                Jimmy Gopperth to name a few.
-                                <br>
-                                <br>
-                                Previously known as the Simpkin Tee, it was designed by the late 
-                                rugby legend George Simpkin and was one of the first kicking tees made. Simon Culhane still holds 
-                                the record for the most successful kicks in a Rugby World Cup match with 20 kicks (using this tee).
-                                Jimmy Gopperth, the 3x English Premiership Golden Boot Winner has scored over 3600 points off this tee.
-                            </p>
-                            <div>
-                                <a href="" class="btn btn-lg rounded-0 bg-yellow border-yellow logo-font shop-now-btn">Shop Now</a>
-                            </div>
+<section class="index-bg" style="background: url('{% static 'images/index/jg_kicking.jpg' %}');">
+    <div class="overlay">
+        <div class="container-fluid landing-height">
+            <div class="row landing-height">
+                <div class="col-12 col-sm-11 col-md-9 col-lg-8 col-xl-7 my-auto mx-auto">
+                    <div class="card mx-auto w-100 p-3 text-center bg-opaque-black card-border">
+                        <h1 class="landing-text logo-font text-custom-yellow card-header">Jimmy G Tee</h1>
+                        <p class="text-white pl-3 pr-3 pb-2">The Jimmy G Tee is an adjustable kicking tee that has been
+                            used by some of the worlds best
+                            goal kickers including Andrew Mehrtens, Simon Culhane, John Earls, Dan Carter, Gavin Henson
+                            &
+                            Jimmy Gopperth to name a few.
+                            <br>
+                            <br>
+                            Previously known as the Simpkin Tee, it was designed by the late
+                            rugby legend George Simpkin and was one of the first kicking tees made. Simon Culhane still
+                            holds
+                            the record for the most successful kicks in a Rugby World Cup match with 20 kicks (using
+                            this tee).
+                            Jimmy Gopperth, the 3x English Premiership Golden Boot Winner has scored over 3600 points
+                            off this tee.
+                        </p>
+                        <div>
+                            <a href="" class="btn btn-lg rounded-0 bg-yellow border-yellow logo-font shop-now-btn">Shop
+                                Now</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<section id="gallery" class="bg-black">
+        <div class="container-fluid p-0">
+            <div class="row mx-1 gallery-slider gallery-image-row mt-5 mb-5">
+                {% for image in images %}
+                <div class="image-outer text-center">
+                    <img src="{{ image.image.url }}" class="gallery-image" alt="..." />
+                </div>
+                {% endfor %}
+                
+                
+
+            </div>
+            <ul class="controls justify-content-center p-0 mb-0" id="custom-controls" aria-label="Carousel Navigation"
+                tabindex="0">
+                <li class="prev card-control pr-3" data-controls="prev" aria-controls="customize" tabindex="-1">
+                    <i class="fas fa-caret-left fa-3x ml-2 mr-2 text-white"></i>
+                </li>
+                <li class="next card-control pl-3" data-controls="next" aria-controls="customize" tabindex="-1">
+                    <i class="fas fa-caret-right fa-3x ml-2 mr-2 text-white"></i>
+                </li>
+            </ul>
+        </div>
+</section>
+{% endblock %}
+
+{% block postloadjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"
+    integrity="sha512-D/zaRVk05q6ERt1JgWB49kL6tyerY7a94egaVv6ObiGcw3OCEv0tvoPDEsVqL28HyAZhDd483ix8gkWQGDgEKw=="
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'home/js/index.js' %}"></script>
 {% endblock %}

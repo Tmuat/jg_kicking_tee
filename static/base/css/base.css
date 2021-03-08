@@ -6,6 +6,7 @@
 html,
 body {
     font-family: 'Roboto', sans-serif;
+    /* overflow: hidden; */
 }
 
 /* || Typography Colours */
@@ -58,9 +59,9 @@ body {
     border: 1px solid #FFC13A;
 }
 
-.border-yellow:hover,
-.border-yellow:active,
-.border-yellow:focus {
+.border-yellow:hover.btn,
+.border-yellow:active.btn,
+.border-yellow:focus.btn {
     border: 1px solid #000;
 }
 

@@ -44,6 +44,33 @@
      transform: translateY(-7px);
 }
 
+.controls {
+    list-style: none;
+    width: 100%;    
+    top: 50%;
+    transform: translatey(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.card-control:hover {
+    cursor: pointer;
+}
+
+.gallery-image-row {
+    height: 500px;
+}
+
+.gallery-image {
+    background-position: center !important;
+      background-repeat: no-repeat !important;
+        background-size: cover !important;
+             object-fit: cover !important;
+               overflow: hidden;
+                  width: 100%;
+                 height: 500px;
+}
+
 /* || Media Queries */
 
 @media only screen and (max-width: 767px) {
