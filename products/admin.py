@@ -11,6 +11,7 @@ class CustomProductAdmin(admin.ModelAdmin):
     list_filter = ('name', 'sku', 'price',)
     search_fields = ('name',)
     ordering = ('name',)
+    readonly_fields = ['sku', ]
 
 
 admin.site.register(Product, CustomProductAdmin)
