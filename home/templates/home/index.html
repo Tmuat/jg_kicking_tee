@@ -11,8 +11,8 @@
     <div class="overlay">
         <div class="container-fluid landing-height">
             <div class="row landing-height">
-                <div class="col-12 col-sm-11 col-md-9 col-lg-8 col-xl-7 my-auto mx-auto">
-                    <div class="card mx-auto w-100 p-3 text-center bg-opaque-black card-border">
+                <div class="col-12 col-sm-11 col-md-9 col-lg-8 col-xl-7 my-auto mx-auto p-3">
+                    <div class="card mx-auto w-100 p-2 p-md-3 text-center bg-opaque-black card-border">
                         <h1 class="landing-text logo-font text-custom-yellow card-header">Jimmy G Tee</h1>
                         <p class="text-white pl-3 pr-3 pb-2">The Jimmy G Tee is an adjustable kicking tee that has been
                             used by some of the worlds best
@@ -40,27 +40,25 @@
     </div>
 </section>
 <section id="gallery" class="bg-black">
-        <div class="container-fluid p-0">
-            <div class="row mx-1 gallery-slider gallery-image-row mt-5 mb-5">
-                {% for image in images %}
-                <div class="image-outer text-center">
-                    <img src="{{ image.image.url }}" class="gallery-image" alt="..." />
-                </div>
-                {% endfor %}
-                
-                
-
+    <div class="container-fluid p-0 pt-3">
+        <h1 class="landing-text logo-font text-custom-yellow text-center mb-0 pt-3">Gallery</h1>
+        <div class="row mx-1 gallery-slider gallery-image-row mt-5 mb-5">
+            {% for image in images %}
+            <div class="image-outer text-center">
+                <img src="{{ image.image.url }}" class="gallery-image" alt="..." />
             </div>
-            <ul class="controls justify-content-center p-0 mb-0" id="custom-controls" aria-label="Carousel Navigation"
-                tabindex="0">
-                <li class="prev card-control pr-3" data-controls="prev" aria-controls="customize" tabindex="-1">
-                    <i class="fas fa-caret-left fa-3x ml-2 mr-2 text-white"></i>
-                </li>
-                <li class="next card-control pl-3" data-controls="next" aria-controls="customize" tabindex="-1">
-                    <i class="fas fa-caret-right fa-3x ml-2 mr-2 text-white"></i>
-                </li>
-            </ul>
+            {% endfor %}
         </div>
+        <ul class="controls justify-content-center p-0 mb-0" id="custom-controls" aria-label="Carousel Navigation"
+            tabindex="0">
+            <li class="prev card-control pr-3" data-controls="prev" aria-controls="customize" tabindex="-1">
+                <i class="fas fa-caret-left fa-3x ml-2 mr-2 text-white"></i>
+            </li>
+            <li class="next card-control pl-3" data-controls="next" aria-controls="customize" tabindex="-1">
+                <i class="fas fa-caret-right fa-3x ml-2 mr-2 text-white"></i>
+            </li>
+        </ul>
+    </div>
 </section>
 {% endblock %}
 

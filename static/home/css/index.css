@@ -9,7 +9,7 @@
         background-size: cover !important;
              object-fit: cover !important;
                overflow: hidden;
-} 
+}
 
 .landing-height {
     height: calc(100vh - 80px);
@@ -74,5 +74,22 @@
 /* || Media Queries */
 
 @media only screen and (max-width: 767px) {
+    .card-header {
+        font-size: 40px;
+    }
 
+    .index-bg {
+        min-height: calc(100vh - 80px);
+        height: auto;
+    }
+
+    .landing-height {
+        min-height: calc(100vh - 80px);
+                height: auto;
+    }
+
+    .overlay {
+        min-height: calc(100vh - 80px);
+                height: auto;
+    }
 }
