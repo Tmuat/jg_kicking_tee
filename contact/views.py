@@ -1,7 +1,11 @@
 from honeypot.decorators import check_honeypot
 
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail, BadHeaderError, EmailMessage
+from django.core.mail import (
+    send_mail,
+    BadHeaderError,
+    EmailMessage
+)
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
