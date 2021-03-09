@@ -25,6 +25,7 @@ def contact(request):
     website_email = str(
         '"' + email.email_show_name + '" <' + email.email + '>'
     )
+    print(website_email)
 
     if request.POST:
         form = ContactForm(request.POST or None)
@@ -49,15 +50,15 @@ def contact(request):
                 email = EmailMessage(
                     subject,
                     msg_contact,
-                    website_email,
-                    [website_email],
+                    '"JG Kicking Tee" <Thomas_Muat@hotmail.com>',
+                    ['"JG Kicking Tee" <Thomas_Muat@hotmail.com>'],
                     reply_to=[email],
                 )
                 email.send(fail_silently=False)
                 send_mail(
                     "Contact Confirmation",
                     msg_contact_confirm,
-                    website_email,
+                    '"JG Kicking Tee" <Thomas_Muat@hotmail.com>',
                     [email],
                     fail_silently=False
                 )
