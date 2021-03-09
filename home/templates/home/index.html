@@ -61,10 +61,11 @@
     </div>
 </section>
 <section id="testimonials" class="bg-black">
-    <div class="container">
+    <div class="container pb-3">
         <h1 class="landing-text logo-font text-custom-yellow text-center mb-0 pt-3">Testimonials</h1>
         <p class="text-center text-white mt-3 mx-auto w-75 ">
-            We are extremely passionate about just how good this kicking tee is; if you don’t believe us take a read below…
+            We are extremely passionate about just how good this kicking tee is; if you don’t believe us take a read
+            below…
         </p>
 
         <div class="row">
@@ -80,59 +81,89 @@
             </div>
             <div class="tab-content pt-0 w-100">
                 {% for instance in testimonials %}
-                    {% if not forloop.counter|divisibleby:2 %}
-                        <div id="panel{{ forloop.counter }}"
-                            class="tab-pane fade in {% if forloop.first %} active show{% endif %}">
-                            <br>
-                            <div class="row no-gutters">
-                                <div class="col-md-4 col-12 mb-0 mb-md-3 p-0 p-md-3">
-                                    <div class="sponsor-image h-100 m-1 text-center">
-                                        <img src="{{ instance.image.url }}" class="border-yellow rounded testimonial-image">
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-12 mb-3 p-3">
-                                    <h3 class="text-center text-uppercase font-weight-bold text-white">{{ instance.name }}</h3>
-                                    <p class="text-center mt-3 mx-auto w-100 w-100 text-white">
-                                        {{ instance.testimonial }}
-                                    </p>
-                                </div>
+                {% if not forloop.counter|divisibleby:2 %}
+                <div id="panel{{ forloop.counter }}"
+                    class="tab-pane fade in {% if forloop.first %} active show{% endif %}">
+                    <br>
+                    <div class="row no-gutters">
+                        <div class="col-md-4 col-12 mb-0 mb-md-3 p-0 p-md-3">
+                            <div class="sponsor-image h-100 m-1 text-center">
+                                <img src="{{ instance.image.url }}" class="border-yellow rounded testimonial-image">
                             </div>
                         </div>
-                    {% else %}
-                        <div id="panel{{ forloop.counter }}"
-                            class="tab-pane fade in {% if forloop.first %} active show{% endif %}">
-                            <br>
-                            <div class="row no-gutters">
-                                <div class="d-none d-md-inline col-md-8 mb-3 p-3">
-                                    <h3 class="text-center text-uppercase font-weight-bold text-white">{{ instance.name }}</h3>
-                                    <p class="text-center mt-3 mx-auto w-100 w-100 text-white">
-                                        {{ instance.testimonial }}
-                                    </p>
-                                </div>
-                                <div class="d-none d-md-inline col-md-4 mb-0 mb-md-3 p-0 p-md-3">
-                                    <div class="sponsor-image h-100 m-1 text-center">
-                                        <img src="{{ instance.image.url }}" class="border-yellow rounded testimonial-image">
-                                    </div>
-                                </div>
-                                <!-- Below is used to ensure the photo is on top with medium and below -->
-                                <div class="d-md-none col-12 mb-0 mb-md-3 p-0 p-md-3">
-                                    <div class="sponsor-image h-100 m-1 text-center">
-                                        <img src="{{ instance.image.url }}" class="border-yellow rounded testimonial-image">
-                                    </div>
-                                </div>
-                                <div class="d-md-none col-12 mb-3 p-3">
-                                    <h3 class="text-center text-uppercase font-weight-bold text-white">{{ instance.name }}</h3>
-                                    <p class="text-center mt-3 mx-auto w-100 w-100 text-white">
-                                        {{ instance.testimonial }}
-                                    </p>
-                                </div>
+                        <div class="col-md-8 col-12 mb-3 p-3">
+                            <h3 class="text-center text-uppercase font-weight-bold text-white">{{ instance.name }}</h3>
+                            <p class="text-center mt-3 mx-auto w-100 w-100 text-white">
+                                {{ instance.testimonial }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div id="panel{{ forloop.counter }}"
+                    class="tab-pane fade in {% if forloop.first %} active show{% endif %}">
+                    <br>
+                    <div class="row no-gutters">
+                        <div class="d-none d-md-inline col-md-8 mb-3 p-3">
+                            <h3 class="text-center text-uppercase font-weight-bold text-white">{{ instance.name }}</h3>
+                            <p class="text-center mt-3 mx-auto w-100 w-100 text-white">
+                                {{ instance.testimonial }}
+                            </p>
+                        </div>
+                        <div class="d-none d-md-inline col-md-4 mb-0 mb-md-3 p-0 p-md-3">
+                            <div class="sponsor-image h-100 m-1 text-center">
+                                <img src="{{ instance.image.url }}" class="border-yellow rounded testimonial-image">
                             </div>
                         </div>
-                    {% endif %}
+                        <!-- Below is used to ensure the photo is on top with medium and below -->
+                        <div class="d-md-none col-12 mb-0 mb-md-3 p-0 p-md-3">
+                            <div class="sponsor-image h-100 m-1 text-center">
+                                <img src="{{ instance.image.url }}" class="border-yellow rounded testimonial-image">
+                            </div>
+                        </div>
+                        <div class="d-md-none col-12 mb-3 p-3">
+                            <h3 class="text-center text-uppercase font-weight-bold text-white">{{ instance.name }}</h3>
+                            <p class="text-center mt-3 mx-auto w-100 w-100 text-white">
+                                {{ instance.testimonial }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
 
+    </div>
+</section>
+<section id="kicking" class="bg-black">
+    <div class="container-fluid">
+        <hr class="border-yellow m-0 w-75 mx-auto">
+        <div class="row kicking-height">
+            <div class="col-12 col-md-6 kicking-academy-logo"
+                style="background: url('{% static 'images/index/jg_kicking_academy_transparent.png' %}');">
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="col-12 col-md-11 col-lg-10 mx-auto align-middle h-100 vertical-center">
+                    <div>
+                        <h1
+                            class="landing-text logo-font text-custom-yellow text-center mb-0 pt-3 pt-md-0 pb-3 d-none d-md-block">
+                            Kicking Lessons
+                        </h1>
+                        <p class="text-center text-white">Learn from Jimmy Goperth - 3 time <strong>Golden Boot
+                                Winner</strong> & voted <strong>2017
+                                Premiership Player of the Year & RPA Play of the Year</strong></p>
+                        <p class="text-center text-white">Maximise your potential!</p>
+                        <p class="text-center text-white">Online & 1 on 1 sessions available!</p>
+                        <div class="text-center pb-3 pb-md-0">
+                            <a href="https://jimmygkickingacademy.co.uk/"
+                                class="btn btn-lg rounded-0 bg-yellow border-black logo-font shop-now-btn"
+                                target="_blank">Get in touch...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

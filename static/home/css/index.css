@@ -1,7 +1,10 @@
 /* || Section 1 Landing Image */
 
+/* || Landing */
+
 .index-bg {
-                 height: calc(100vh - 80px);
+             min-height: calc(100vh - 80px);
+                 height: auto;
                   width: 100%;
              margin-top: 80px;
     background-position: center !important;
@@ -12,23 +15,29 @@
 }
 
 .landing-height {
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
+        height: auto;
 }
 
 .overlay {
-        height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
+        height: auto;
          width: 100vw;
     background: rgba(2,0,36,0.5);
     background: linear-gradient(180deg, rgba(2,0,36,0.6) 19%, rgba(255,193,58,0.5) 100%);
 }
+
+/* || Landing Card */
 
 .card-border {
     border-radius: 15px 15px 15px 15px;
 }
 
 .card-header {
-    font-size: 72px;
+    font-size: 40px;
 }
+
+/* || Buttons */
 
 .shop-now-btn {
     transition: all 0.3s ease 0s;
@@ -43,6 +52,8 @@
          color: #fff;
      transform: translateY(-7px);
 }
+
+/* || Media Carousel */
 
 .controls {
     list-style: none;
@@ -71,6 +82,8 @@
                  height: 500px;
 }
 
+/* || Testimonial Section */
+
 .tab.active {
     color: #FFC13A !important;
 }
@@ -83,25 +96,75 @@
     height: 200px;
 }
 
+/* || Kicking Academy */
+
+.kicking-height {
+    min-height: 70vh;
+}
+
+.kicking-academy-logo {
+    background-position: center !important;
+      background-repeat: no-repeat !important;
+        background-size: cover !important;
+             object-fit: cover !important;
+               overflow: hidden;
+                 height: 40vh;
+}
+
+.vertical-center {
+      display: flex;
+  align-items: center;
+}
+
 /* || Media Queries */
 
-@media only screen and (max-width: 767px) {
-    .card-header {
-        font-size: 40px;
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .kicking-height {
+        min-height: 50vh;
     }
 
-    .index-bg {
-        min-height: calc(100vh - 80px);
+    .kicking-academy-logo {
         height: auto;
     }
 
+    .card-header {
+        font-size: 72px;
+    }
+
+    .index-bg {
+            height: calc(100vh - 80px);
+             width: 100%;
+        margin-top: 80px;
+    }
+
     .landing-height {
-        min-height: calc(100vh - 80px);
-                height: auto;
+        height: calc(100vh - 80px);
     }
 
     .overlay {
-        min-height: calc(100vh - 80px);
-                height: auto;
+            height: calc(100vh - 80px);
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .kicking-height {
+        min-height: 70vh;
     }
 }
