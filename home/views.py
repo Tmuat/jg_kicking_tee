@@ -1,4 +1,4 @@
-from random import shuffle
+from random import shuffle, sample
 
 
 from django.shortcuts import render
@@ -14,13 +14,19 @@ def index(request):
     """
 
     images_qs = list(LandingImage.objects.filter(active=True))
-    shuffle(images_qs)
+
+    if len(images_qs) < 9:
+        sample_len = len(images_qs)
+    else:
+        sample_len = 10
+
+    images_qs_sample = sample(images_qs, k=sample_len)
 
     testimonial_qs = list(Testimonial.objects.filter(active=True))
     shuffle(testimonial_qs)
 
     context = {
-        'images': images_qs,
+        'images': images_qs_sample,
         'testimonials': testimonial_qs
     }
 

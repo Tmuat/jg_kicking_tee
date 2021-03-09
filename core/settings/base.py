@@ -94,6 +94,7 @@ THIRD_PARTY_APPS = [
     'admin_honeypot',
     'honeypot',
     'crispy_forms',
+    'django_cleanup',
 ]
 
 LOCAL_APPS = [
@@ -104,7 +105,7 @@ LOCAL_APPS = [
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 # ------------------------------------------------------------------------------
 # AUTHENTICATION
