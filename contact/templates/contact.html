@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% load honeypot %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'allauth/css/allauth.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="bg-light-grey">
+    <div class="container landing-height">
+        <div class="row h-100">
+            <div class="col-12 col-sm-10 col-lg-8 offset-sm-1 offset-lg-2">
+                <div class="allauth-form-inner-content text-center pt-5 pb-5">
+                    <div class="card p-3">
+                        <h1 class="logo-font mb-2">Contact Us</h1>
+                        <hr class="m-0 w-75 mx-auto">
+                        <div class="card-inner pt-2">
+                            <div class="form-inner mx-auto">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="row no-gutters">
+                                        <div class="col-12">
+                                            {{ form.from_name|as_crispy_field }}
+                                        </div>
+                                        <div class="col-12">
+                                            {{ form.from_email|as_crispy_field }}
+                                        </div>
+                                        {% render_honeypot_field %}
+                                        <div class="col-12">
+                                            {{ form.message|as_crispy_field }}
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="mt-2 btn action-btn rounded-0 bg-black border-yellow logo-font"
+                                                type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
