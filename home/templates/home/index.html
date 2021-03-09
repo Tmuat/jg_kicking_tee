@@ -42,13 +42,6 @@
 <section id="gallery" class="bg-black">
     <div class="container-fluid p-0 pt-3">
         <h1 class="landing-text logo-font text-custom-yellow text-center mb-0 pt-3">Gallery</h1>
-        <div class="row mx-1 gallery-slider gallery-image-row mt-5 mb-5">
-            {% for image in images %}
-            <div class="image-outer text-center">
-                <img src="{{ image.image.url }}" class="gallery-image" alt="..." />
-            </div>
-            {% endfor %}
-        </div>
         <ul class="controls justify-content-center p-0 mb-0" id="custom-controls" aria-label="Carousel Navigation"
             tabindex="0">
             <li class="prev card-control pr-3" data-controls="prev" aria-controls="customize" tabindex="-1">
@@ -58,6 +51,13 @@
                 <i class="fas fa-caret-right fa-3x ml-2 mr-2 text-white"></i>
             </li>
         </ul>
+        <div class="row mx-1 gallery-slider gallery-image-row mt-5 mb-5">
+            {% for image in images %}
+            <div class="image-outer text-center">
+                <img src="{{ image.image.url }}" class="gallery-image" alt="..." />
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </section>
 <section id="testimonials" class="bg-black">
