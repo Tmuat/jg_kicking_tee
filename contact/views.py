@@ -3,9 +3,11 @@ from honeypot.decorators import check_honeypot
 from django.shortcuts import render, redirect
 from django.core.mail import (
     send_mail,
+    send_mass_mail,
     BadHeaderError,
     EmailMessage
 )
+
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
@@ -35,13 +37,12 @@ def contact(request):
         form = ContactForm(request.POST or None)
         if form.is_valid():
             name = form.cleaned_data['from_name']
-            email = form.cleaned_data['from_email']
+            form_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
-            subject = "Website Inquiry"
 
             msg_contact = render_to_string('emails/contact.txt',
                                            {'name': name,
-                                            'email': email,
+                                            'email': form_email,
                                             'message': message})
 
             msg_contact_confirm = render_to_string('emails/contact-confirm.txt',
@@ -50,20 +51,20 @@ def contact(request):
                                                     'message': message})
             try:
                 email = EmailMessage(
-                    subject,
+                    "Website Contact",
                     msg_contact,
-                    '"JG Kicking Tee" <Thomas_Muat@hotmail.com>',
-                    ['"JG Kicking Tee" <Thomas_Muat@hotmail.com>'],
-                    reply_to=[email],
+                    website_email,
+                    [website_email],
+                    reply_to=[form_email],
                 )
                 email.send(fail_silently=False)
-                send_mail(
+                email_confirm = EmailMessage(
                     "Contact Confirmation",
                     msg_contact_confirm,
-                    '"JG Kicking Tee" <Thomas_Muat@hotmail.com>',
-                    [email],
-                    fail_silently=False
+                    website_email,
+                    [form_email],
                 )
+                email_confirm.send(fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('home')
