@@ -19,7 +19,7 @@
             </a>
         </li>
         <hr class="menu-line m-0 w-25">
-        <li class="nav-item menu-item-1 active">
+        <li class="nav-item menu-item-1 {% if request.get_full_path == home_url %}active{% endif %}">
             <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item dropdown">
@@ -52,8 +52,8 @@
         <li class="nav-item menu-item-5">
             <a class="nav-link" href="#">Shop</a>
         </li>
-        <li class="nav-item menu-item-6">
-            <a class="nav-link" href="#">Contact Us</a>
+        <li class="nav-item menu-item-6 {% if request.get_full_path == contact_url %}active{% endif %}">
+            <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
         </li>
     </ul>
 </div>
