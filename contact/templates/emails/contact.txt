@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hello,
+
+{{ name }} has submitted the contact form.
+
+Email: {{ email }}
+
+{{ message }}
+
+Sincerely,
+The JG Kicking Tee Website Team
+{% endautoescape %}

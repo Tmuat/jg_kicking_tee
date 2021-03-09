@@ -1,0 +1,14 @@
+{% autoescape off %}
+Hello {{ name }},
+
+Thank you for contacting JG Kicking Tee. We will endeavour to get back to you ASAP.
+
+Below is confirmation of your contact request:
+
+Email: {{ email }}
+
+Message: {{ message }}
+
+Sincerely,
+The JG Kicking Tee Website Team
+{% endautoescape %}
