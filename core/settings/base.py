@@ -99,6 +99,7 @@ LOCAL_APPS = [
     'users',
     'home',
     'products',
+    'contact',
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
