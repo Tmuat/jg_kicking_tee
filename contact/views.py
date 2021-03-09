@@ -9,6 +9,10 @@ from .forms import (
     ContactForm
 )
 
+from .models import (
+    EmailInfo
+)
+
 
 @check_honeypot
 def contact(request):
@@ -17,6 +21,11 @@ def contact(request):
     to stop bots submitting the form.
     """
     form = ContactForm()
+    email = EmailInfo.objects.first()
+    website_email = str(
+        '"' + email.email_show_name + '" <' + email.email + '>'
+    )
+
     if request.POST:
         form = ContactForm(request.POST or None)
         if form.is_valid():
@@ -40,15 +49,15 @@ def contact(request):
                 email = EmailMessage(
                     subject,
                     msg_contact,
-                    '"JG Tee Contact" <info@jimmygtee.co.uk>',
-                    ['"JG Tee Contact" <info@jimmygtee.co.uk>'],
+                    website_email,
+                    [website_email],
                     reply_to=[email],
                 )
                 email.send(fail_silently=False)
                 send_mail(
                     "Contact Confirmation",
                     msg_contact_confirm,
-                    '"JG Tee Contact" <info@jimmygtee.co.uk>',
+                    website_email,
                     [email],
                     fail_silently=False
                 )
