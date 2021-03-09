@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-
 from .models import LandingImage, Testimonial
 
 
@@ -18,8 +17,8 @@ class CustomImageAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         if not obj.created_by:
-            obj.created_by = request.user.username
-        obj.updated_by = request.user.username
+            obj.created_by = request.user.email
+        obj.updated_by = request.user.email
         obj.save()
 
 
@@ -40,8 +39,8 @@ class CustomTestimonialAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         if not obj.created_by:
-            obj.created_by = request.user.username
-        obj.updated_by = request.user.username
+            obj.created_by = request.user.email
+        obj.updated_by = request.user.email
         obj.save()
 
 
