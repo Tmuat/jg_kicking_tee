@@ -92,6 +92,7 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'admin_honeypot',
+    'honeypot',
     'crispy_forms',
 ]
 
@@ -263,3 +264,10 @@ ACCOUNT_FORMS = {'signup': 'users.forms.CustomUserCreationForm'}
 # https://django-crispy-forms.readthedocs.io/en/latest/index.html
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# ------------------------------------------------------------------------------
+# honeypot
+# ------------------------------------------------------------------------------
+# https://pypi.org/project/django-honeypot/
+
+HONEYPOT_FIELD_NAME = env("HONEYPOT_FIELD")
