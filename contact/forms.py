@@ -1,8 +1,5 @@
 from django import forms
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Row, Column
-
 
 class ContactForm(forms.Form):
     from_name = forms.CharField(required=True)
