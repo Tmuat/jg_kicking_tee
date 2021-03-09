@@ -41,13 +41,11 @@ def contact(request):
 
             msg_contact = render_to_string('emails/contact.txt',
                                            {'name': name,
-                                            'subject': subject,
                                             'email': email,
                                             'message': message})
 
             msg_contact_confirm = render_to_string('emails/contact-confirm.txt',
                                                    {'name': name,
-                                                    'subject': subject,
                                                     'email': email,
                                                     'message': message})
             try:
