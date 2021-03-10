@@ -41,3 +41,15 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return self.product.name
+
+
+class ProductFeature(models.Model):
+    feature = models.CharField(max_length=200, null=False, blank=False)
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='product_features',
+    )
+
+    def __str__(self):
+        return self.product.name
