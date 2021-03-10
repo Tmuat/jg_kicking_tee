@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-# Create your views here.
+from .models import Product, ProductImage
+
+
+def product_detail(request, product_slug):
+    """ A view to show individual product details """
+
+    product = get_object_or_404(Product, pk=product_slug)
+
+    context = {
+        'product': product,
+    }
+
+    return render(request, 'products/product_detail.html', context)

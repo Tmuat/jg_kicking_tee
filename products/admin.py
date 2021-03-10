@@ -7,10 +7,12 @@ class CustomProductAdmin(admin.ModelAdmin):
     list_display = ('name',
                     'sku',
                     'price',
+                    'slug'
                     )
     list_filter = ('name', 'sku', 'price',)
     search_fields = ('name',)
     ordering = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
     readonly_fields = ['sku', ]
 
 
