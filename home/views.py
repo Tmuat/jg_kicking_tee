@@ -26,12 +26,9 @@ def index(request):
     testimonial_qs = list(Testimonial.objects.filter(active=True))
     shuffle(testimonial_qs)
 
-    product = Product.objects.first()
-
     context = {
         'images': images_qs_sample,
         'testimonials': testimonial_qs,
-        'product': product
     }
 
     template = 'home/index.html'
