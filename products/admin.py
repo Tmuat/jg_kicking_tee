@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product
+from .models import Product, ProductImage
 
 
 class CustomProductAdmin(admin.ModelAdmin):
@@ -15,3 +15,15 @@ class CustomProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, CustomProductAdmin)
+
+
+class CustomProductImageAdmin(admin.ModelAdmin):
+    list_display = ('product',
+                    'image',
+                    )
+    list_filter = ('product',)
+    search_fields = ('product',)
+
+
+admin.site.register(ProductImage, CustomProductImageAdmin)
+

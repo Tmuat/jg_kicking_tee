@@ -32,3 +32,6 @@ class ProductImage(models.Model):
         on_delete=models.CASCADE,
         related_name='product_images',
     )
+
+    def __str__(self):
+        return self.product.name
