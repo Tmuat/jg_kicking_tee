@@ -53,7 +53,7 @@
                     {% endfor %}
                     </ul>
                 </div>
-                <form class="form" action="" method="POST">
+                <form class="form" action="{% url 'add_to_bag' product_id=product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
                         <div class="col-12 mb-0 mb-lg-2 mb-xl-2">
