@@ -42,16 +42,22 @@
         </div>
         <div class="col-12 col-md-6 col-lg-5 col-xl-4">
             <div class="product-details-container mb-5 mt-md-5">
-                <h1 class="landing-text logo-font text-custom-yellow text-shadow mb-3 pt-3">{{ product.name }}</h1>
-                <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
-                <p class="mt-3">{{ product.description }}</p>
-                <p class="mt-3"><strong>Features:</strong></p>
-                
+                <h1 class="landing-text logo-font text-custom-yellow text-shadow mb-0 mb-lg-2 mb-xl-0 pt-3">{{ product.name }}</h1>
+                <p class="lead mb-1 text-left font-weight-bold">£{{ product.price }}</p>
+                <p class="mb-0 mb-lg-2 mb-xl-2">{{ product.description }}</p>
+                <div class="mb-0 mb-lg-2 mb-xl-2">
+                    <p class="mb-1"><strong>Features:</strong></p>
+                    <ul class="m-0">
+                    {% for feature in product_features %}
+                        <li>{{ feature.feature }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
                 <form class="form" action="" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
-                        <div class="col-12">
-                            <p class="mt-3"><strong>Quantity:</strong></p>
+                        <div class="col-12 mb-0 mb-lg-2 mb-xl-2">
+                            <p class="mb-1"><strong>Quantity:</strong></p>
                             <div class="form-group w-50">
                                 <div class="input-group">
                                     <input class="form-control qty_input" type="number" name="quantity" value="1"
@@ -60,7 +66,7 @@
                             </div>
                         </div>
                         <div class="col-12 align-top">
-                            <input type="submit" class="btn btn-add rounded-0 text-uppercase mt-3" value="Add to Bag">
+                            <input type="submit" class="btn btn-add rounded-0 text-uppercase mb-0 mb-lg-2 mb-xl-3" value="Add to Bag">
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
