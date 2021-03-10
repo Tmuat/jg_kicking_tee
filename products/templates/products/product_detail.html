@@ -22,7 +22,7 @@
                         <img src="{{ image.image.url }}" alt="{{ image.product.name }}"
                             id="product_image{{ forloop.counter }}"
                             class="card-img-top img-fluid box-shadow product-border {% if forloop.first %}"
-                            {% else %}secondary-image d-none"{% endif %}>
+                            {% else %}d-none"{% endif %}>
                         {% endfor %}
                     </div>
                 </div>
@@ -30,9 +30,9 @@
                     <div class="row">
                         {% for image in product_images %}
                         <div class="col-3">
-                            <div class="thumbnail rounded">
+                            <div class="thumbnail rounded box-shadow">
                                 <img src="{{ image.image.url }}" id="thumbnail{{ forloop.counter }}"
-                                    class="img-fluid box-shadow product-border" alt="{{ image.product.name }}">
+                                    class="img-fluid product-border" alt="{{ image.product.name }}">
                             </div>
                         </div>
                         {% endfor %}
