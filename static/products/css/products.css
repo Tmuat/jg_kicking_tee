@@ -17,3 +17,33 @@
         left: 0;
        right: 0;
 }
+
+.btn-add {
+	     box-shadow:inset 0px 1px 0px 0px #caefab;
+	     background:linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+	background-color:#77d42a;
+              border:1px solid #000;
+             display:inline-block;
+    
+               color:#000;
+
+	         padding:6px 24px;
+	 text-decoration:none;
+    
+          transition: all 0.3s ease 0s;
+              cursor: pointer;
+             outline: none;
+}
+
+.btn-add:hover,
+.btn-add:focus {    
+          background:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+    background-color:#5cb811;
+
+           transform: translateY(-3px);
+}
+
+.btn-add:active {
+	position:relative;
+	     top:1px;
+}
