@@ -40,12 +40,12 @@ def contact(request):
             form_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
 
-            msg_contact = render_to_string('emails/contact.txt',
+            msg_contact = render_to_string('contact/emails/contact.txt',
                                            {'name': name,
                                             'email': form_email,
                                             'message': message})
 
-            msg_contact_confirm = render_to_string('emails/contact-confirm.txt',
+            msg_contact_confirm = render_to_string('contact/emails/contact-confirm.txt',
                                                    {'name': name,
                                                     'email': email,
                                                     'message': message})
@@ -73,6 +73,6 @@ def contact(request):
         "form": form,
     }
 
-    template = 'contact.html'
+    template = 'contact/contact.html'
 
     return render(request, template, context)
