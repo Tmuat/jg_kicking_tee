@@ -19,6 +19,11 @@ body {
     color: #83bb57;
 }
 
+.text-custom-green:hover,
+.text-custom-green:focus {
+    color: #c3e2ab;
+}
+
 /* || Colours */
 
 .bg-black {

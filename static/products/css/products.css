@@ -61,8 +61,12 @@
 }
 
 .form-group.custom-input {
-    margin-left: auto!important;
+     margin-left: auto!important;
     margin-right: auto!important;
+}
+
+.input-btn {
+    max-height: 38px;
 }
 
 /* || Media Queries */
