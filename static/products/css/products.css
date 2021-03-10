@@ -51,3 +51,53 @@
 .text-shadow {
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
+
+.feature-list li {
+    list-style-type: none;
+}
+
+.feature-list {
+    padding: 0px;
+}
+
+.form-group.custom-input {
+    margin-left: auto!important;
+    margin-right: auto!important;
+}
+
+/* || Media Queries */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .feature-list li {
+        list-style-type: disc;
+    }
+
+    .feature-list {
+        padding-left: 40px;
+    }
+
+    .form-group.custom-input {
+        margin-left: 0px !important;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
