@@ -1,0 +1,19 @@
+.box-shadow {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2),0 2px 10px 0 rgba(0,0,0,0.2) !important;
+}
+
+.product-border {
+    border-radius: .375rem !important;
+}
+
+.thumbnail {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.secondary-image {
+    position: absolute;
+        left: 0;
+       right: 0;
+}
