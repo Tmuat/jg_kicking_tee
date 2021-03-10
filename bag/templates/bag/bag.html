@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'bag/css/bag.css' %}">
+{% endblock %}
+
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -14,7 +18,7 @@
     <div class="row">
         <div class="col">
             <hr>
-            <h2 class="logo-font my-2">Shopping Bag</h2>
+            <h2 class="logo-font my-2 text-center text-sm-left">Shopping Bag</h2>
             <hr>
         </div>
     </div>
@@ -47,7 +51,36 @@
                             <p class="my-0">£{{ product.product.price }}</p>
                         </td>
                         <td class="py-3 text-center w-25">
-                            <p class="my-0">{{ product.quantity }}</p>
+                            <form class="form update-form" method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="input-group pl-0 pl-lg-5 pr-0 pr-lg-5">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-sm bg-black rounded-0"
+                                                data-product_id="{{ product.product_id }}" id="decrement-qty_{{ product.product_id }}">
+                                                <span>
+                                                    <i class="fas fa-minus fa-sm"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <input class="form-control form-control-sm qty_input" type="number"
+                                            name="quantity" value="{{ product.quantity }}" min="1" max="99"
+                                            data-product_id="{{ product.product_id }}" id="id_qty_{{ product.product_id }}">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-sm bg-black rounded-0"
+                                                data-product_id="{{ product.product_id }}" id="increment-qty_{{ product.product_id }}">
+                                                <span>
+                                                    <i class="fas fa-plus fa-sm"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="pl-0 pl-lg-5 pr-0 pr-lg-5">
+                                <a class="update-link text-info float-left"><small>Update</small></a>
+                                <a class="remove-item text-danger float-right" id="remove_{{ item.product_id }}"><small>Remove</small></a>
+                            </div>
                         </td>
                         <td class="py-3 text-center">
                             <p class="my-0">£{{ product.product.price }}</p>
@@ -63,7 +96,8 @@
                     </tr>
                     <tr>
                         <td colspan="5" class="text-right">
-                            <a href="{% url 'product_detail' product.slug %}" class="btn bg-yellow border-black rounded-0 btn-lg">
+                            <a href="{% url 'product_detail' product.slug %}"
+                                class="btn bg-yellow border-black rounded-0 btn-lg">
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>
@@ -92,4 +126,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+<script type="text/javascript" src="{% static 'bag/js/bag.js' %}"></script>
 {% endblock %}
