@@ -6,7 +6,7 @@ from .models import Product, ProductImage
 def product_detail(request, product_slug):
     """ A view to show individual product details """
 
-    product = get_object_or_404(Product, pk=product_slug)
+    product = get_object_or_404(Product, slug=product_slug)
 
     context = {
         'product': product,
