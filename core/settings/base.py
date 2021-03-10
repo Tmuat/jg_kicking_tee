@@ -192,6 +192,8 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
                 'core.context_processors.global_product',
+                'bag.context_processors.bag_contents',
+
             ],
         }
     }
