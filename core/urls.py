@@ -30,7 +30,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('products.urls')),
     path('', include('contact.urls')),
-    path('', include('bag.urls')),
+    path('bag/', include('bag.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
