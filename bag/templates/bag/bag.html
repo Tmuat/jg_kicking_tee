@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bag_tools %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}">
@@ -84,7 +85,7 @@
 
                         </td>
                         <td class="py-3 text-center">
-                            <p class="my-0">£{{ product.product.price }}</p>
+                            <p class="my-0">£{{ product.product.price | calc_subtotal:product.quantity }}</p>
                         </td>
                     </tr>
                     {% endfor %}
