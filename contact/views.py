@@ -2,14 +2,12 @@ from honeypot.decorators import check_honeypot
 
 from django.shortcuts import render, redirect
 from django.core.mail import (
-    send_mail,
-    send_mass_mail,
     BadHeaderError,
     EmailMessage
 )
-
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from django.contrib import messages
 
 from .forms import (
     ContactForm
@@ -31,7 +29,6 @@ def contact(request):
     website_email = str(
         '"' + email.email_show_name + '" <' + email.email + '>'
     )
-    print(website_email)
 
     if request.POST:
         form = ContactForm(request.POST or None)
@@ -65,6 +62,8 @@ def contact(request):
                     [form_email],
                 )
                 email_confirm.send(fail_silently=False)
+                messages.success(request, 'Thank you for submitting '
+                                 'the contact form')
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('home')
