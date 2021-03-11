@@ -31,11 +31,11 @@
                 <table class="table table-sm table-borderless">
                     <thead class="text-black">
                         <tr>
-                            <th scope="col">Product Info</th>
+                            <th scope="col" class="cell-width-50">Product Info</th>
                             <th scope="col" class="d-none d-md-table-cell"></th>
-                            <th scope="col" class="text-center">Price</th>
-                            <th scope="col" class="text-center">Qty</th>
-                            <th scope="col" class="text-center">Subtotal</th>
+                            <th scope="col" class="d-none d-sm-table-cell text-center">Price</th>
+                            <th scope="col" class="text-center cell-width-50">Qty</th>
+                            <th scope="col" class="d-none d-sm-table-cell text-center">Subtotal</th>
                         </tr>
                     </thead>
 
@@ -45,21 +45,25 @@
                             <img class="img-fluid rounded" src="{{ product.product.product_images.first.image.url }}">
                         </td>
                         <td class="py-3">
-                            <p class="my-0"><strong>{{ product.product.name }}</strong></p>
-                            <p class="my-0 small text-muted">SKU: {{ product.product.sku|upper }}</p>
+                            <p class="my-0 d-inline"><strong>{{ product.product.name }}</strong></p><br>
+                            <p class="my-0 small text-muted d-inline">SKU: <strong>{{ product.product.sku|upper }}</strong></p><br>
+                            <p class="my-0 d-sm-none small text-muted d-inline">PRICE: <strong>£{{ product.product.price }}</strong></p><br>
+                            <p class="my-0 d-sm-none small text-muted d-inline">SUBTOTAL: <strong>£{{ product.product.price | calc_subtotal:product.quantity }}</strong></p>
                         </td>
-                        <td class="py-3 text-center">
+                        <td class="py-3 text-center d-none d-sm-table-cell">
                             <p class="my-0">£{{ product.product.price }}</p>
                         </td>
                         <td class="py-3 text-center w-25">
                             <div class="pl-0 pl-lg-5 pr-0 pr-lg-5">
-                                <form class="form update-form" method="POST" action="{% url 'adjust_bag' product.product.id %}">
+                                <form class="form update-form" method="POST"
+                                    action="{% url 'adjust_bag' product.product.id %}">
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <button class="decrement-qty btn btn-sm bg-black rounded-0"
-                                                    data-product_id="{{ pproduct.product.id }}" id="decrement-qty_{{ product.product.id }}">
+                                                    data-product_id="{{ pproduct.product.id }}"
+                                                    id="decrement-qty_{{ product.product.id }}">
                                                     <span>
                                                         <i class="fas fa-minus fa-sm"></i>
                                                     </span>
@@ -67,10 +71,12 @@
                                             </div>
                                             <input class="form-control form-control-sm qty_input" type="number"
                                                 name="quantity" value="{{ product.quantity }}" min="1" max="99"
-                                                data-product_id="{{ product.product.id }}" id="id_qty_{{ product.product.id }}">
+                                                data-product_id="{{ product.product.id }}"
+                                                id="id_qty_{{ product.product.id }}">
                                             <div class="input-group-append">
                                                 <button class="increment-qty btn btn-sm bg-black rounded-0"
-                                                    data-product_id="{{ product.product.id }}" id="increment-qty_{{ product.product.id }}">
+                                                    data-product_id="{{ product.product.id }}"
+                                                    id="increment-qty_{{ product.product.id }}">
                                                     <span>
                                                         <i class="fas fa-plus fa-sm"></i>
                                                     </span>
@@ -80,11 +86,12 @@
                                     </div>
                                 </form>
                                 <a class="update-link text-info float-left"><small>Update</small></a>
-                                <a class="remove-item text-danger float-right" id="remove_{{ product.product.id }}"><small>Remove</small></a>
+                                <a class="remove-item text-danger float-right"
+                                    id="remove_{{ product.product.id }}"><small>Remove</small></a>
                             </div>
 
                         </td>
-                        <td class="py-3 text-center">
+                        <td class="py-3 text-center d-none d-sm-table-cell">
                             <p class="my-0">£{{ product.product.price | calc_subtotal:product.quantity }}</p>
                         </td>
                     </tr>
@@ -99,13 +106,13 @@
                     <tr>
                         <td colspan="5" class="text-right">
                             <a href="{% url 'product_detail' product.slug %}"
-                                class="btn bg-yellow border-black rounded-0 btn-lg">
+                                class="btn bg-yellow border-black rounded-0 btn-lg btn-text-sm mt-2 mt-sm-0">
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>
                                 <span class="text-uppercase">Keep Shopping</span>
                             </a>
-                            <a href="" class="btn bg-black border-yellow rounded-0 btn-lg">
+                            <a href="" class="btn bg-black border-yellow rounded-0 btn-lg btn-text-sm mt-2 mt-sm-0">
                                 <span class="text-uppercase">Secure Checkout</span>
                                 <span class="icon">
                                     <i class="fas fa-lock"></i>
