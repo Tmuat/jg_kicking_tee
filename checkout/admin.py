@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderLineItem
+from .models import Order, OrderLineItem, DeliveryOptions
 
 
 class OrderLineItemAdminInline(admin.TabularInline):
@@ -28,3 +28,15 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Order, OrderAdmin)
+
+
+class CustomDeliveryOptionsAdmin(admin.ModelAdmin):
+    list_display = ('option',
+                    'price',
+                    'description',
+                    )
+    list_filter = ('option', 'price', 'description',)
+    search_fields = ('option',)
+
+
+admin.site.register(DeliveryOptions, CustomDeliveryOptionsAdmin)
