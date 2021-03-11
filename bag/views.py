@@ -5,6 +5,7 @@ from django.shortcuts import (
     get_object_or_404,
     HttpResponse
 )
+from django.contrib import messages
 
 from products.models import Product
 
@@ -34,8 +35,12 @@ def add_to_bag(request, product_id):
 
     if product.sku in list(bag.keys()):
         bag[product.sku] += quantity
+        messages.success(request,
+                         (f'Updated {product.name} '
+                          f'quantity to {bag[product.sku]}'))
     else:
         bag[product.sku] = quantity
+        messages.success(request, f'Added {product.name} to your bag')
 
     request.session['bag'] = bag
 
@@ -53,8 +58,14 @@ def adjust_bag(request, product_id):
 
     if quantity > 0:
         bag[product.sku] = quantity
+        messages.success(request,
+                         (f'Updated {product.name} '
+                          f'quantity to {bag[product.sku]}'))
     else:
         bag.pop(product.sku)
+        messages.success(request,
+                         (f'Removed {product.name} '
+                          f'from your bag'))
 
     request.session['bag'] = bag
 
@@ -68,15 +79,14 @@ def remove_from_bag(request, product_id):
 
     try:
         product = get_object_or_404(Product, id=product_id)
-        print(product)
         bag = request.session.get('bag', {})
-        print(bag)
 
         bag.pop(product.sku)
+        messages.success(request, f'Removed {product.name} from your bag')
 
         request.session['bag'] = bag
-        print(bag)
         return HttpResponse(status=200)
 
-    except Exception:
+    except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
