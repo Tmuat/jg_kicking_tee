@@ -8,6 +8,7 @@ from django.shortcuts import (
 from django.contrib import messages
 
 from products.models import Product
+from checkout.models import DeliveryOptions
 
 
 def view_bag(request):
@@ -15,7 +16,10 @@ def view_bag(request):
     A view to return the shopping bag.
     """
 
+    delivery = DeliveryOptions.objects.all()
+
     context = {
+        'delivery': delivery,
     }
 
     template = 'bag/bag.html'
@@ -90,3 +94,27 @@ def remove_from_bag(request, product_id):
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
+
+
+def add_delivery(request):
+    """
+    Add the specified delivery option.
+    """
+    if request.method == 'POST':
+        selected = request.POST.get('id-selected')
+
+        delivery = get_object_or_404(DeliveryOptions, delivery_sku=selected)
+
+        delivery_option = request.session.get('delivery', {})
+
+        delivery_option.clear()
+
+        delivery_option[delivery.delivery_sku] = str(delivery.price)
+
+        messages.success(request,
+                         f'{delivery.option} - £{delivery.price} '
+                         f'selected.')
+
+        request.session['delivery'] = delivery_option
+
+    return redirect('bag')
