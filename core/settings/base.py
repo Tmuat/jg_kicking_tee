@@ -18,8 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Settings for Django-environ
 # https://django-environ.readthedocs.io/en/latest/#
-env = environ.Env(
-)
+env = environ.Env()
+
 # Reading .env file
 environ.Env.read_env()
 
