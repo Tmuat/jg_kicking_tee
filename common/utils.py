@@ -56,3 +56,23 @@ def unique_order_generator(instance):
     if qs_exists:
         return unique_order_generator(instance)
     return new_order
+
+
+def random_string_generator_delivery(size=4,
+                                     chars=string.digits):
+    string = str('A' + ''.join(
+        random.choice(chars) for _ in range(size)))
+
+    return string
+
+
+def unique_delivery_generator(instance):
+    new_delivery = random_string_generator_delivery()
+
+    Klass = instance.__class__
+
+    qs_exists = Klass.objects.filter(
+                    delivery_sku=new_delivery).exists()
+    if qs_exists:
+        return unique_delivery_generator(instance)
+    return new_delivery

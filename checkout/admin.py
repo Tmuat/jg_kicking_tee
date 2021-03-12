@@ -34,6 +34,7 @@ class CustomDeliveryOptionsAdmin(admin.ModelAdmin):
     list_display = ('option',
                     'price',
                     'description',
+                    'delivery_sku'
                     )
     list_filter = ('option', 'price', 'description',)
     search_fields = ('option',)
