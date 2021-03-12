@@ -3,6 +3,17 @@
     cursor: pointer;
 }
 
+.custom-text-hover {
+     color: #17a2b8;
+    cursor: pointer;
+}
+
+.custom-text-hover:hover,
+.custom-text-hover:focus {
+              color: #0f6674;
+    text-decoration: underline;
+}
+
 /* || Media Queries */
 
 /* Extra small devices (phones, 576 and down) */
