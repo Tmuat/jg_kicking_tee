@@ -1,3 +1,5 @@
+import logging
+
 from honeypot.decorators import check_honeypot
 
 from django.shortcuts import render, redirect
@@ -16,6 +18,9 @@ from .forms import (
 from .models import (
     EmailInfo
 )
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 
 @check_honeypot
@@ -64,6 +69,7 @@ def contact(request):
                 email_confirm.send(fail_silently=False)
                 messages.success(request, 'Thank you for submitting '
                                  'the contact form')
+                logger.info('Contact form submitted')
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('home')
