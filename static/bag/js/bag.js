@@ -64,4 +64,6 @@ $(document).ready(function () {
         });
         $("#delivery-form").submit();
     });
+    // Start tooltips for this page
+    $('[data-toggle="tooltip"]').tooltip();
 });

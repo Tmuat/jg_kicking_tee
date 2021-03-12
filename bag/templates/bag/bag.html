@@ -99,14 +99,12 @@
                     <tr>
                         <td colspan="5" class="pt-5 text-right">
                             <h6 class="mb-1"><strong>Bag Total: £{{ total|floatformat:2 }}</strong></h6>
-                            <h6 style="display: none;">Delivery: £{{ delivery|floatformat:2 }}</h6>
-                            <h6 data-toggle="modal" data-target="#staticBackdrop" class="d-block mb-1 custom-text-hover"><strong>View Delivery Options</strong></h6>
-                            <select name="delivery-select" id="delivery-select">
-                                <option value="-----" disabled selected>-----</option>
-                            {% for option in delivery %}
-                                <option value="{{ option.price }}">{{ option.option }} (£{{ option.price }})</option>
-                            {% endfor %}
-                            </select>
+                            {% if delivery_set %}
+                                <h6 class="mb-0">Delivery: £{% for instance in delivery_option %}{{ instance.delivery.price|floatformat:2 }}{% endfor %}</h6>
+                                <h6 data-toggle="modal" data-target="#deliveryModal" class="d-block mb-1 custom-text-hover"><strong>Change Delivery Option</strong></h6>
+                            {% else %}
+                                <h6 data-toggle="modal" data-target="#deliveryModal" class="d-block mb-1 custom-text-hover"><strong>Select Delivery Option</strong></h6>
+                            {% endif %}
                             <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
                         </td>
                     </tr>
@@ -119,12 +117,23 @@
                                 </span>
                                 <span class="text-uppercase">Keep Shopping</span>
                             </a>
-                            <a href="" class="btn bg-black border-yellow rounded-0 btn-lg btn-text-sm mt-2 mt-sm-0">
-                                <span class="text-uppercase">Secure Checkout</span>
-                                <span class="icon">
-                                    <i class="fas fa-lock"></i>
-                                </span>
-                            </a>
+                            {% if delivery_set %}
+                                <a href="#" class="btn bg-black border-yellow rounded-0 btn-lg btn-text-sm mt-2 mt-sm-0">
+                                    <span class="text-uppercase">Secure Checkout</span>
+                                    <span class="icon">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </a>
+                            {% else %}
+                                <div class="d-inline" data-toggle="tooltip" data-placement="top" title="Please select a delivery option.">
+                                    <a href="" role="button" class="btn bg-black border-yellow rounded-0 btn-lg btn-text-sm mt-2 mt-sm-0 disabled">
+                                        <span class="text-uppercase">Secure Checkout</span>
+                                        <span class="icon">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            {% endif %}
                         </td>
                     </tr>
                 </table>
@@ -143,23 +152,42 @@
     </div>
 </div>
 
-
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="deliveryModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="deliveryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Delivery Options</h5>
+                <h5 class="modal-title" id="deliveryModalLabel">Delivery Options</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-            {% for option in delivery %}
-                <h6>{{ option.option }} - £{{ option.price }}</h6>
-                <p>{{ option.description }}</p>
-            {% endfor %}
+                <table class="table table-borderless mb-0">
+                    <tbody>
+                        {% for option in delivery %}
+                        <tr>
+                            <td>
+                                <input type="radio" id="{{ option.delivery_sku }}" name="delivery-option" value="{{ option.price }}"
+                                {% for instance in delivery_option %}
+                                    {% if instance.delivery.delivery_sku == option.delivery_sku %} checked {% endif %}
+                                {% endfor %}
+                                >
+                            </td>
+                            <td>
+                                <h6>{{ option.option }} - £{{ option.price }}</h6>
+                                <p class="mb-0">{{ option.description }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <form id="delivery-form" action="{% url 'add_delivery' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="id-selected" id="id-selected">
+                    <input class="btn btn-success delivery-submit" type="submit" value="Save">
+                </form>
             </div>
         </div>
     </div>
