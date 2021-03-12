@@ -54,5 +54,14 @@ $(document).ready(function () {
             .done(function () {
                 location.reload();
             });
-    })
+    });
+    // Creating a form for the delivery selection
+    $(".delivery-submit").click(function () {
+        var selected = [];
+        $.each($("input[type='radio']:checked"), function () {
+            selected.push($(this).attr("id"));
+            $('#id-selected').val(selected);
+        });
+        $("#delivery-form").submit();
+    });
 });
