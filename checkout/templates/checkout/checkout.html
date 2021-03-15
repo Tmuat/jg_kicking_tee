@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-3">
                     <p class="my-0">£{{ total|floatformat:2 }}</p>
-                    <p class="my-0">£{% for instance in delivery_option %}{{ instance.delivery.price|floatformat:2 }}{% endfor %}</p>
+                    <p class="my-0">£{{ delivery_option.price|floatformat:2 }}</p>
                     <p class="my-0"><strong>£{{ grand_total|floatformat:2 }}</strong></p>
                 </div>
             </div>
@@ -68,12 +68,12 @@
             <p class="text-muted">Please fill out the form below to complete your order</p>
             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}
-                <fieldset class="rounded px-3 mb-5">
+                <fieldset class="rounded px-3 mb-3">
                     <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
                     {{ order_form.full_name | as_crispy_field }}
                     {{ order_form.email | as_crispy_field }}
                 </fieldset>
-                <fieldset class="rounded px-3 mb-5">
+                <fieldset class="rounded px-3 mb-3">
                     <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
                     {{ order_form.phone_number | as_crispy_field }}
                     {{ order_form.street_address1 | as_crispy_field }}
@@ -103,15 +103,15 @@
                     <!-- Pass the client secret to the view so we can get the payment intent id -->
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
-                <div class="submit-button text-right mt-5 mb-2">
+                <div class="submit-button text-right mt-3 mb-2 px-3">
                     <a href="{% url 'bag' %}" class="btn bg-yellow border-black rounded-0 btn-text-sm mt-2 mt-sm-0">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
-                        <span class="font-weight-bold">Adjust Bag</span>
+                        <span class="font-weight-bold text-uppercase">Adjust Bag</span>
                     </a>
                     <button id="submit-button" class="btn bg-black border-yellow rounded-0 btn-text-sm mt-2 mt-sm-0">
-                        <span class="font-weight-bold">Complete Order</span>
+                        <span class="font-weight-bold text-uppercase">Complete Order</span>
                         <span class="icon">
                             <i class="fas fa-lock"></i>
                         </span>
