@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from django.contrib import messages
 
 from django.shortcuts import render, redirect, reverse
@@ -13,9 +15,13 @@ def checkout(request):
 
     order_form = OrderForm()
 
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+
     template = 'checkout/checkout.html'
+
     context = {
         'order_form': order_form,
+        'stripe_public_key': stripe_public_key
     }
 
     return render(request, template, context)
