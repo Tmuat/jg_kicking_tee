@@ -9,7 +9,7 @@ from checkout.models import DeliveryOptions
 def bag_contents(request):
 
     bag_items = []
-    delivery_option = []
+    delivery_option = None
 
     total = 0
     delivery_cost = 0
@@ -29,15 +29,12 @@ def bag_contents(request):
             'product': product
             })
 
-    for delivery_sku, price in delivery_array.items():
+    delivery_sku = delivery_array.get('option')
+    if delivery_sku is not None:
         delivery = get_object_or_404(
-            DeliveryOptions, delivery_sku=delivery_sku)
-        delivery_cost = Decimal(price)
-        delivery_option.append({
-            'delivery': delivery
-        })
-
-    if delivery_cost > 0:
+                DeliveryOptions, delivery_sku=delivery_sku)
+        delivery_cost = Decimal(delivery.price)
+        delivery_option = delivery
         delivery_set = True
     else:
         delivery_set = False

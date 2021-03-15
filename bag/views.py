@@ -109,7 +109,7 @@ def add_delivery(request):
 
         delivery_option.clear()
 
-        delivery_option[delivery.delivery_sku] = str(delivery.price)
+        delivery_option['option'] = delivery.delivery_sku
 
         messages.success(request,
                          f'{delivery.option} - £{delivery.price} '
