@@ -288,4 +288,6 @@ HONEYPOT_FIELD_NAME = env("HONEYPOT_FIELD")
 # ------------------------------------------------------------------------------
 # https://stripe.com/docs/payments
 
+STRIPE_CURRENCY = env("STRIPE_CURRENCY")
 STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
