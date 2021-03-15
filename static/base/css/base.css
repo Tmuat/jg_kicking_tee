@@ -147,16 +147,7 @@ hr.menu-line {
 }
 
 /* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
-.arrow-up {
-    width: 0; 
-    height: 0; 
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent; 
-    border-bottom: 10px solid black;
-    position: absolute;
-    top: -10px;
-    right: 36px;
-}
+
 
 /* Convenience classes - colors copied from Bootstrap */
 .arrow-primary {
@@ -195,4 +186,40 @@ hr.menu-line {
     height: 100px;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+/* || Media Queries */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .arrow-up {
+        width: 0; 
+        height: 0; 
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent; 
+        border-bottom: 10px solid black;
+        position: absolute;
+        top: -10px;
+        right: 36px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }
