@@ -282,3 +282,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # https://pypi.org/project/django-honeypot/
 
 HONEYPOT_FIELD_NAME = env("HONEYPOT_FIELD")
+
+# ------------------------------------------------------------------------------
+# stripe
+# ------------------------------------------------------------------------------
+# https://stripe.com/docs/payments
+
+STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
