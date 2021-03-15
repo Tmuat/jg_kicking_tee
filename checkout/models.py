@@ -8,6 +8,35 @@ from common.utils import unique_order_generator, unique_delivery_generator
 from products.models import Product
 
 
+class DeliveryOptions(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    delivery_sku = models.CharField(max_length=5,
+                                    null=True,
+                                    blank=True,
+                                    unique=True,
+                                    editable=False)
+    option = models.CharField(max_length=255, null=False, blank=False)
+    price = models.DecimalField(max_digits=10,
+                                decimal_places=2,
+                                null=False,
+                                default=0)
+    description = models.CharField(max_length=400, null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = "Delivery Options"
+
+    def __str__(self):
+        return self.option
+
+
+def pre_save_create_delivery_sku(sender, instance, *args, **kwargs):
+    if not instance.delivery_sku:
+        instance.delivery_sku = unique_delivery_generator(instance)
+
+
+pre_save.connect(pre_save_create_delivery_sku, sender=DeliveryOptions)
+
+
 class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     order_number = models.CharField(max_length=8,
@@ -25,6 +54,11 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    delivery_method = models.ForeignKey(DeliveryOptions,
+                                        null=False,
+                                        blank=False,
+                                        on_delete=models.CASCADE,
+                                        related_name='delivery_option')
     delivery_cost = models.DecimalField(max_digits=6,
                                         decimal_places=2,
                                         null=False,
@@ -109,32 +143,3 @@ def update_on_delete(sender, instance, **kwargs):
 
 
 post_delete.connect(update_on_delete, sender=OrderLineItem)
-
-
-class DeliveryOptions(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    delivery_sku = models.CharField(max_length=5,
-                                    null=True,
-                                    blank=True,
-                                    unique=True,
-                                    editable=False)
-    option = models.CharField(max_length=255, null=False, blank=False)
-    price = models.DecimalField(max_digits=10,
-                                decimal_places=2,
-                                null=False,
-                                default=0)
-    description = models.CharField(max_length=400, null=False, blank=False)
-
-    class Meta:
-        verbose_name_plural = "Delivery Options"
-
-    def __str__(self):
-        return self.option
-
-
-def pre_save_create_delivery_sku(sender, instance, *args, **kwargs):
-    if not instance.delivery_sku:
-        instance.delivery_sku = unique_delivery_generator(instance)
-
-
-pre_save.connect(pre_save_create_delivery_sku, sender=DeliveryOptions)
