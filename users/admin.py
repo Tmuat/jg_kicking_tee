@@ -2,10 +2,15 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser
+from .models import CustomUser, UserProfile
+
+
+class UserProfileAdminInline(admin.StackedInline):
+    model = UserProfile
 
 
 class CustomUserAdmin(UserAdmin):
+    inlines = (UserProfileAdminInline,)
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
@@ -13,12 +18,13 @@ class CustomUserAdmin(UserAdmin):
                     'first_name',
                     'last_name',
                     'is_staff',
+                    'is_superuser',
                     'is_active',
                     )
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('email', 'password', 'first_name', 'last_name',)}),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        ('Permissions', {'fields': ('is_superuser','is_staff', 'is_active')}),
     )
     add_fieldsets = (
         (None, {
