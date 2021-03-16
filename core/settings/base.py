@@ -293,3 +293,9 @@ STRIPE_CURRENCY = env("STRIPE_CURRENCY")
 STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_WH_SECRET = env("STRIPE_WH_SECRET")
+
+# ------------------------------------------------------------------------------
+# Order email
+# ------------------------------------------------------------------------------
+
+NO_REPLY_EMAIL = env("NO_REPLY_EMAIL")

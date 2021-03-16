@@ -1,0 +1,20 @@
+Hello {{ order.full_name }}!
+
+This is a confirmation of your order at JG Kicking Tee. Your order information is below:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date|date:"d-m-Y" }}
+
+Order Total: £{{ order.order_total }}
+Delivery: £{{ order.delivery_cost }}
+Grand Total: £{{ order.grand_total }}
+
+Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.
+
+Thank you for your order!
+
+Sincerely,
+JG Kicking Tee Team
+
+
+Note. This email was sent from a notification-only address that does not accept incoming emails. Please do not reply to this message.
