@@ -1,11 +1,8 @@
 from random import shuffle, sample
 
-
 from django.shortcuts import render
 
-
 from .models import LandingImage, Testimonial
-from products.models import Product
 
 
 def index(request):
