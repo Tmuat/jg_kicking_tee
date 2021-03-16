@@ -15,9 +15,13 @@ class CustomUser(AbstractUser):
     username = None
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(_('email address'), unique=True)
+    first_name = models.CharField(_('first name'),
+                                  max_length=30, blank=False, null=False)
+    last_name = models.CharField(_('last name'),
+                                 max_length=150, blank=False, null=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = CustomUserManager()
 
@@ -54,7 +58,7 @@ class UserProfile(models.Model):
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
     Create or update the user profile
-    """    
+    """
     qs_exists = UserProfile.objects.filter(
                     user=instance).exists()
     if qs_exists:

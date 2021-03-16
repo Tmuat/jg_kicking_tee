@@ -9,9 +9,6 @@ class UserProfileAdminInline(admin.StackedInline):
     model = UserProfile
 
 
-admin.site.register(UserProfile)
-
-
 class CustomUserAdmin(UserAdmin):
     inlines = (UserProfileAdminInline,)
     add_form = CustomUserCreationForm
@@ -27,7 +24,7 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('email', 'password', 'first_name', 'last_name',)}),
-        ('Permissions', {'fields': ('is_superuser','is_staff', 'is_active')}),
+        ('Permissions', {'fields': ('is_staff', 'is_superuser', 'is_active')}),
     )
     add_fieldsets = (
         (None, {
@@ -38,6 +35,7 @@ class CustomUserAdmin(UserAdmin):
                        'password1',
                        'password2',
                        'is_staff',
+                       'is_superuser',
                        'is_active'
                        )
                 }
