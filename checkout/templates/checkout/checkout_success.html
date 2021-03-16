@@ -190,5 +190,24 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12 col-lg-7 text-right">
+            {% if from_profile %}
+            <a href="{% url 'profile' %}" class="btn bg-black border-yellow rounded-0 btn-text-sm mt-2 mt-sm-0 float-right">
+                <span class="icon mr-2">
+                    <i class="fas fa-angle-left"></i>
+                </span>
+                <span class="text-uppercase">Back to Profile</span>
+            </a>
+            {% else %}
+            <a href="{% url 'home' %}" class="btn bg-black border-yellow rounded-0 btn-text-sm mt-2 mt-sm-0 float-right">
+                <span class="icon mr-2">
+                    <i class="fas fa-gifts"></i>
+                </span>
+                <span class="text-uppercase">Home</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}
