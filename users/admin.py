@@ -9,6 +9,9 @@ class UserProfileAdminInline(admin.StackedInline):
     model = UserProfile
 
 
+admin.site.register(UserProfile)
+
+
 class CustomUserAdmin(UserAdmin):
     inlines = (UserProfileAdminInline,)
     add_form = CustomUserCreationForm
