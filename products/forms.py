@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Product, ProductFeature
+from .models import Product, ProductFeature, ProductImage
 from .widgets import CustomClearableFileInput
 
 
@@ -30,6 +30,22 @@ class ProductFeatureForm(forms.ModelForm):
             self.fields[field].label = False
 
 
+class ProductImageForm(forms.ModelForm):
+
+    class Meta:
+        model = ProductImage
+        fields = 'image',
+
+    image = forms.ImageField(label='Image',
+                             required=False,
+                             widget=CustomClearableFileInput)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].label = False
+
+
 ProductFeatureFormset = forms.inlineformset_factory(
         Product,
         ProductFeature,
@@ -37,4 +53,13 @@ ProductFeatureFormset = forms.inlineformset_factory(
         fields=('feature',),
         extra=1,
         max_num=6
+    )
+
+ProductImageFormset = forms.inlineformset_factory(
+        Product,
+        ProductImage,
+        form=ProductImageForm,
+        fields=('image',),
+        extra=4,
+        max_num=4,
     )
