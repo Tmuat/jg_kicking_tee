@@ -1,11 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 
 
 from .models import Product, ProductImage, ProductFeature
-from .forms import ProductForm, ProductFeatureFormset
+from .forms import (
+    ProductForm,
+    ProductFeatureFormset,
+    ProductImageFormset
+)
 
 
 def product_detail(request, product_slug):
@@ -42,9 +45,15 @@ def edit_product(request, product_slug):
             request.FILES,
             instance=product
         )
-        if form.is_valid() and formset.is_valid():
+        image_formset = ProductImageFormset(
+            request.POST,
+            request.FILES,
+            instance=product
+        )
+        if form.is_valid() and formset.is_valid() and image_formset.is_valid():
             form.save()
             formset.save()
+            image_formset.save()
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.slug]))
         else:
@@ -54,11 +63,13 @@ def edit_product(request, product_slug):
     else:
         form = ProductForm(instance=product)
         formset = ProductFeatureFormset(instance=product)
+        image_formset = ProductImageFormset(instance=product)
 
     template = 'products/edit_product.html'
     context = {
         'form': form,
         'formset': formset,
+        'image_formset': image_formset,
         'product': product,
     }
 
