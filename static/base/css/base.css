@@ -77,9 +77,9 @@ body {
     border: 1px solid #000;
 }
 
-.border-black:hover,
-.border-black:active,
-.border-black:focus {
+.btn.border-black:hover,
+.btn.border-black:active,
+.btn.border-black:focus {
     border: 1px solid #FFC13A;
 }
 
