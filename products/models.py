@@ -36,7 +36,9 @@ pre_save.connect(pre_save_create_sku, sender=Product)
 
 
 class ProductImage(models.Model):
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True,
+                              blank=True,
+                              upload_to='product_images')
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
