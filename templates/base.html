@@ -2,7 +2,8 @@
 
 {% url 'home' as home_url %}
 {% url 'contact' as contact_url %}
-{% url 'product_detail' product.slug as shop_url %}
+product_slug
+
 {% url 'bag' as bag_url %}
 
 <!doctype html>
@@ -84,7 +85,7 @@
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                <a href="{% url 'edit_product' product.slug %}" class="dropdown-item">Product Management</a>
+                                <a href="product_slug" class="dropdown-item">Product Management</a>
                                 {% endif %}
                                 <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
