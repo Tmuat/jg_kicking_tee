@@ -15,7 +15,8 @@ def product_detail(request, product_slug):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, slug=product_slug)
-    product_images = ProductImage.objects.filter(product=product)
+    product_images = ProductImage.objects.filter(product=product) \
+        .order_by('rank')
     product_features = ProductFeature.objects.filter(product=product)
 
     context = {

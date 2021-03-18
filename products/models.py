@@ -55,6 +55,9 @@ class ProductImage(models.Model):
         related_name='product_images',
     )
 
+    class Meta:
+        ordering = ("rank",)
+
     def __str__(self):
         return self.product.name
 
