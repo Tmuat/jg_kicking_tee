@@ -1,0 +1,102 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block content %}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Product Management</h1>
+    </div>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <form method="POST" action="{% url 'edit_product' product.slug %}" class="form mb-2 w-100"
+                enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Product Form -->
+                    <div class="col-12 col-md-5">
+                        {{ form|crispy }}
+                    </div>
+                    <!-- Product Form End -->
+
+                    <!-- Product Features Form -->
+                    <div class="col-12 col-md-5 responsive-border-left">
+                        {{ formset.non_form_errors|crispy }}
+                        <div class="row">
+                            {% for form in formset %}
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
+                            <div class="col-12 inline-formset">
+                                {% if forloop.first %}
+                                <label class="requiredField mb-2">
+                                    Feature<span class="asteriskField">*</span>
+                                </label>
+                                {% endif %}
+                                {{ form.feature|as_crispy_field }}
+                                <div class="custom-control custom-checkbox mt-2"
+                                    id="div_id_product_features-{{ forloop.counter0 }}-DELETE">
+                                    <input class="custom-control-input" type="checkbox"
+                                        name="product_features-{{ forloop.counter0 }}-DELETE"
+                                        id="id_product_features-{{ forloop.counter0 }}-DELETE">
+                                    <label class="custom-control-label text-danger"
+                                        for="id_product_features-{{ forloop.counter0 }}-DELETE">Delete</label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {{ formset.management_form }}
+                        </div>
+                    </div>
+                    <!-- Product Features Form End -->
+                </div>
+                <div class="col-10">
+                    <hr>
+                </div>
+
+                <!-- Product Images Form -->
+                <div class="col-10 text-center">
+                    {{ image_formset.non_form_errors|crispy }}
+                    <div class="row">
+                        {% for form in image_formset %}
+                        {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                        {% endfor %}
+                        {% if forloop.first %}
+                        <div class="col-12 p-0">
+                            <label class="requiredField mb-2">
+                                Images<span class="asteriskField">*</span>
+                            </label>
+                        </div>
+                        {% endif %}
+                        <div class="col-6 col-md-3 p-0 inline-formset">
+                            {{ form.image }}
+                            {% if form.instance.pk %}
+                            <div class="custom-control custom-checkbox mt-2"
+                                id="div_id_product_images-{{ forloop.counter0 }}-DELETE">
+                                <input class="custom-control-input" type="checkbox"
+                                    name="product_images-{{ forloop.counter0 }}-DELETE"
+                                    id="id_product_images-{{ forloop.counter0 }}-DELETE">
+                                <label class="custom-control-label text-danger"
+                                    for="id_product_images-{{ forloop.counter0 }}-DELETE">Delete</label>
+                            </div>
+                            {% endif %}
+                            <div class="custom-select-width mx-auto pl-2 pr-2">
+                                {{ form.rank|as_crispy_field }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {{ image_formset.management_form }}
+                    </div>
+                </div>
+                <!-- Product Images End -->
+
+                <div class="col-10 text-right mt-2 mb-3">
+                    <a class="btn bg-yellow border-black rounded-0 btn-text-sm mt-2 mt-sm-0" href="">Cancel</a>
+                    <button class="btn bg-black border-yellow rounded-0 btn-text-sm mt-2 mt-sm-0" type="submit">Update
+                        Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

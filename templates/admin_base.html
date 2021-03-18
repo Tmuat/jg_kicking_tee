@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'site_admin/css/bootstrap_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
     <link rel="icon" href="{% static 'images/favicon/favicon.ico' %}" />
     {% endblock %}
 
@@ -62,13 +63,19 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" href="{% url 'admin_home' %}">
                                 <i class="fas fa-home"></i>
                                 Dashboard <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin_edit_product' product.slug %}">
+                                <i class="far fa-edit"></i>
+                                Edit Product
                             </a>
                         </li>
                     </ul>
