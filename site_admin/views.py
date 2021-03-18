@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 
 from checkout.models import Order
 from products.models import Product
-from products.forms import (
+from .forms import (
     ProductForm,
     ProductFeatureFormset,
     ProductImageFormset

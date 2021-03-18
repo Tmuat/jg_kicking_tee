@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-12 mx-auto">
-            <form method="POST" action="{% url 'edit_product' product.slug %}" class="form mb-2 w-100"
+            <form method="POST" action="{% url 'admin_edit_product' product.slug %}" class="form mb-2 w-100"
                 enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
