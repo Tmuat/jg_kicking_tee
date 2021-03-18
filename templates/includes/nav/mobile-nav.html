@@ -31,7 +31,6 @@
                 {% if request.user.is_authenticated %}
                 {% if request.user.is_staff %}
                 <a href="{% url 'admin_home' %}" class="dropdown-item">Admin</a>
-                <a href="{% url 'edit_product' product.slug %}" class="dropdown-item">Product Management</a>
                 {% endif %}
                 <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
