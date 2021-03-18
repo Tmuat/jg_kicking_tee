@@ -83,7 +83,8 @@
                         </a>
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
-                                {% if request.user.is_superuser %}
+                                {% if request.user.is_staff %}
+                                <a href="{% url 'admin_home' %}" class="dropdown-item">Admin</a>
                                 <a href="{% url 'edit_product' product.slug %}" class="dropdown-item">Product Management</a>
                                 {% endif %}
                                 <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
