@@ -19,8 +19,7 @@
         <div class="row">
             <div class="col-12">
                 <hr>
-                <h2 class="logo-font mb-4">Product Management</h2>
-                <h5 class="text-muted">Edit a Product</h5>
+                <h2 class="logo-font mb-2">Product Management</h2>
                 <hr>
             </div>
         </div>
@@ -30,11 +29,15 @@
                 <form method="POST" action="{% url 'edit_product' product.slug %}" class="form mb-2 w-100" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
-                    <div class="col-12 col-md-6">
-                            {{ form|crispy }}
-                    </div>
-                    <div class="col-12 col-md-6 border-left">
-                        {{ formset.non_form_errors|crispy }}
+                        <!-- Product Form -->
+                        <div class="col-12 col-md-6">
+                                {{ form|crispy }}
+                        </div>
+                        <!-- Product Form End -->
+
+                        <!-- Product Features Form -->
+                        <div class="col-12 col-md-6 responsive-border-left">
+                            {{ formset.non_form_errors|crispy }}
                             <div class="row">
                                 {% for form in formset %}
                                     {% for hidden in form.hidden_fields %}
@@ -53,32 +56,37 @@
                                 {{ formset.management_form }}
                             </div>
                         </div>
+                        <!-- Product Features Form End -->
                     </div>
                     <hr>
+
+                    <!-- Product Images Form -->
                     <div class="col-12 text-center">
                         {{ image_formset.non_form_errors|crispy }}
-                            <div class="row">
-                                {% for form in image_formset %}
-                                    {% for hidden in form.hidden_fields %}
-                                        {{ hidden }}
-                                    {% endfor %}
-                                    {% if forloop.first %}
-                                    <div class="col-12 p-0">
-                                        <label class="requiredField mb-2">
-                                            Images<span class="asteriskField">*</span>
-                                        </label>
-                                    </div>
-                                    {% endif %}
-                                <div class="col-3 p-0 inline-formset">
-                                    {{ form.image }}
-                                    {% if form.instance.pk %}
-                                        {{ form.DELETE }}
-                                    {% endif %}
-                                </div>
+                        <div class="row">
+                            {% for form in image_formset %}
+                                {% for hidden in form.hidden_fields %}
+                                    {{ hidden }}
                                 {% endfor %}
-                                {{ image_formset.management_form }}
+                                {% if forloop.first %}
+                                <div class="col-12 p-0">
+                                    <label class="requiredField mb-2">
+                                        Images<span class="asteriskField">*</span>
+                                    </label>
+                                </div>
+                                {% endif %}
+                            <div class="col-6 col-md-3 p-0 inline-formset">
+                                {{ form.image }}
+                                {% if form.instance.pk %}
+                                    {{ form.DELETE }}
+                                {% endif %}
                             </div>
+                            {% endfor %}
+                            {{ image_formset.management_form }}
+                        </div>
                     </div>
+                    <!-- Product Images End -->
+                    
                     <div class="text-right">
                         <a class="btn bg-yellow border-black rounded-0 btn-text-sm mt-2 mt-sm-0" href="">Cancel</a>
                         <button class="btn bg-black border-yellow rounded-0 btn-text-sm mt-2 mt-sm-0" type="submit">Update Product</button>

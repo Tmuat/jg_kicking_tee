@@ -103,6 +103,10 @@
     cursor: pointer;
 }
 
+.responsive-border-left {
+    border-left: none;
+}
+
 /* || Media Queries */
 
 /* Extra small devices (phones, 600px and down) */
@@ -127,6 +131,10 @@
 
     .form-group.custom-input {
         margin-left: 0px !important;
+    }
+
+    .responsive-border-left {
+        border-left: 1px solid #dee2e6!important;
     }
 }
 
