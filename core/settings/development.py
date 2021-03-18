@@ -108,7 +108,7 @@ LOGGING = {
             'level': LOGLEVEL,
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, "logs/logs.txt"),
-            'formatter': 'simple',
+            'formatter': 'verbose',
         },
     },
     'loggers': {
@@ -118,7 +118,7 @@ LOGGING = {
         }
     },
     'root': {
-        'handlers': ['console',],
+        'handlers': ['console', 'file'],
         'level': LOGLEVEL,
     },
 }
