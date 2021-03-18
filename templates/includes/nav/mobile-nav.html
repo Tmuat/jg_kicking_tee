@@ -30,7 +30,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
-                <a href="product_slug" class="dropdown-item">Product Management</a>
+                <a href="{% url 'edit_product' product.slug %}" class="dropdown-item">Product Management</a>
                 {% endif %}
                 <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -50,7 +50,7 @@
             <a class="nav-link" href="{% url 'home' %}#kicking">Kicking</a>
         </li>
         <li class="nav-item menu-item-5 {% if request.get_full_path == shop_url %}active{% endif %}">
-            <a class="nav-link" href="product_slug">Shop</a>
+            <a class="nav-link" href="{% url 'product_detail' product.slug %}">Shop</a>
         </li>
         <li class="nav-item menu-item-6 {% if request.get_full_path == contact_url %}active{% endif %}">
             <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
