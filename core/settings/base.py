@@ -103,7 +103,8 @@ LOCAL_APPS = [
     'products',
     'contact',
     'bag',
-    'checkout'
+    'checkout',
+    'site_admin'
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
