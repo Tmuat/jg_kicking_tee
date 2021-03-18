@@ -36,9 +36,19 @@ pre_save.connect(pre_save_create_sku, sender=Product)
 
 
 class ProductImage(models.Model):
+    POSITION = (
+        (1, 'Main Picture'),
+        (2, '2nd Picture'),
+        (3, '3rd Picture'),
+        (4, 'Last Picture'),
+    )
     image = models.ImageField(null=True,
                               blank=True,
                               upload_to='product_images')
+    rank = models.IntegerField(null=False,
+                               blank=False,
+                               unique=True,
+                               choices=POSITION)
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,

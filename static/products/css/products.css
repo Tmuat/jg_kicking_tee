@@ -107,6 +107,10 @@
     border-left: none;
 }
 
+.custom-select-width {
+    width: 100%;
+}
+
 /* || Media Queries */
 
 /* Extra small devices (phones, 600px and down) */
@@ -136,6 +140,10 @@
     .responsive-border-left {
         border-left: 1px solid #dee2e6!important;
     }
+
+    .custom-select-width {
+        width: 75%;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -145,5 +153,7 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
+    .custom-select-width {
+        width: 50%;
+    }
 }

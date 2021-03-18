@@ -34,7 +34,7 @@ class ProductImageForm(forms.ModelForm):
 
     class Meta:
         model = ProductImage
-        fields = 'image',
+        fields = 'image', 'rank'
 
     image = forms.ImageField(label='Image',
                              required=False,
@@ -44,6 +44,8 @@ class ProductImageForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].label = False
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0 ,b-0'
 
 
 ProductFeatureFormset = forms.inlineformset_factory(
@@ -59,7 +61,7 @@ ProductImageFormset = forms.inlineformset_factory(
         Product,
         ProductImage,
         form=ProductImageForm,
-        fields=('image',),
+        fields=('image', 'rank'),
         extra=4,
         max_num=4,
     )

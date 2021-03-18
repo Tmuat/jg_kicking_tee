@@ -80,6 +80,9 @@
                                 {% if form.instance.pk %}
                                     {{ form.DELETE }}
                                 {% endif %}
+                                <div class="custom-select-width mx-auto pl-2 pr-2">
+                                    {{ form.rank|as_crispy_field }}
+                                </div>
                             </div>
                             {% endfor %}
                             {{ image_formset.management_form }}
@@ -87,7 +90,7 @@
                     </div>
                     <!-- Product Images End -->
                     
-                    <div class="text-right">
+                    <div class="text-right mt-2 mb-3">
                         <a class="btn bg-yellow border-black rounded-0 btn-text-sm mt-2 mt-sm-0" href="">Cancel</a>
                         <button class="btn bg-black border-yellow rounded-0 btn-text-sm mt-2 mt-sm-0" type="submit">Update Product</button>
                     </div>
