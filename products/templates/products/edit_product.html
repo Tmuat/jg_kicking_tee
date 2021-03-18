@@ -50,7 +50,10 @@
                                         </label>
                                     {% endif %}
                                     {{ form.feature|as_crispy_field }}
-                                    {{ form.DELETE }}
+                                    <div class="custom-control custom-checkbox mt-2" id="div_id_product_features-{{ forloop.counter0 }}-DELETE">
+                                        <input class="custom-control-input" type="checkbox" name="product_features-{{ forloop.counter0 }}-DELETE" id="id_product_features-{{ forloop.counter0 }}-DELETE">
+                                        <label class="custom-control-label text-danger" for="id_product_features-{{ forloop.counter0 }}-DELETE">Delete</label>
+                                    </div>
                                 </div>
                                 {% endfor %}
                                 {{ formset.management_form }}
@@ -78,7 +81,10 @@
                             <div class="col-6 col-md-3 p-0 inline-formset">
                                 {{ form.image }}
                                 {% if form.instance.pk %}
-                                    {{ form.DELETE }}
+                                <div class="custom-control custom-checkbox mt-2" id="div_id_product_images-{{ forloop.counter0 }}-DELETE">
+                                    <input class="custom-control-input" type="checkbox" name="product_images-{{ forloop.counter0 }}-DELETE" id="id_product_images-{{ forloop.counter0 }}-DELETE">
+                                    <label class="custom-control-label text-danger" for="id_product_images-{{ forloop.counter0 }}-DELETE">Delete</label>
+                                </div>
                                 {% endif %}
                                 <div class="custom-select-width mx-auto pl-2 pr-2">
                                     {{ form.rank|as_crispy_field }}

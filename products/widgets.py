@@ -6,8 +6,3 @@ class CustomClearableFileInput(widgets.ClearableFileInput):
     clear_checkbox_label = _('Remove')
     input_text = _('')
     template_name = 'products/custom_widget_templates/custom_clearable_file_input.html'
-
-
-widgets.CheckboxInput.template_name = 'products/custom_widget_templates/delete.html'
-
-

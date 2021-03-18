@@ -42,8 +42,8 @@ class ProductImage(models.Model):
         (3, '3rd Picture'),
         (4, 'Last Picture'),
     )
-    image = models.ImageField(null=True,
-                              blank=True,
+    image = models.ImageField(null=False,
+                              blank=False,
                               upload_to='product_images')
     rank = models.IntegerField(null=False,
                                blank=False,
