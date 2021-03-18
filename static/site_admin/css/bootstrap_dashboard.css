@@ -67,7 +67,7 @@ body {
  */
 
 [role="main"] {
-  padding-top: 48px; /* Space for fixed navbar */
+  padding-top: 64px; /* Space for fixed navbar */
 }
 
 /*
@@ -143,6 +143,10 @@ body {
     width: 100%;
 }
 
+.navbar-brand {
+    box-shadow: none;
+}
+
 
 /* || Media Queries */
 
@@ -176,6 +180,13 @@ body {
 
     .custom-select-width {
         width: 75%;
+    }
+    .navbar-brand {
+        box-shadow: inset -1px 0 0 rgb(0 0 0 / 25%);
+    }
+
+    [role="main"] {
+        padding-top: 48px; /* Space for fixed navbar */
     }
 }
 
