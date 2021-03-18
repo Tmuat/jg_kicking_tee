@@ -16,7 +16,7 @@ def view_bag(request):
     A view to return the shopping bag.
     """
 
-    delivery = DeliveryOptions.objects.all()
+    delivery = DeliveryOptions.objects.filter(active=True)
 
     context = {
         'delivery': delivery,

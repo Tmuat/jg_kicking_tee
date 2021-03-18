@@ -12,6 +12,10 @@ from users.models import UserProfile
 
 
 class DeliveryOptions(models.Model):
+    ACTIVE = (
+        (True, 'Active'),
+        (False, 'Not Active'),
+    )
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     delivery_sku = models.CharField(max_length=5,
                                     null=True,
@@ -24,6 +28,8 @@ class DeliveryOptions(models.Model):
                                 null=False,
                                 default=0)
     description = models.CharField(max_length=400, null=False, blank=False)
+    active = models.BooleanField(default=False,
+                                 choices=ACTIVE)
 
     class Meta:
         verbose_name_plural = "Delivery Options"

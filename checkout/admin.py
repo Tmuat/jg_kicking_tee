@@ -34,11 +34,12 @@ admin.site.register(Order, OrderAdmin)
 
 class CustomDeliveryOptionsAdmin(admin.ModelAdmin):
     list_display = ('option',
+                    'active',
                     'price',
                     'description',
                     'delivery_sku'
                     )
-    list_filter = ('option', 'price', 'description',)
+    list_filter = ('option', 'price', 'description', 'active',)
     search_fields = ('option',)
 
 
