@@ -1,9 +1,8 @@
 {% load static %}
 
-{% url 'home' as home_url %}
-{% url 'contact' as contact_url %}
-{% url 'product_detail' product.slug as shop_url %}
 {% url 'bag' as bag_url %}
+{% url 'admin_home' as admin_url %}
+{% url 'admin_edit_product' product.slug as admin_edit_url %}
 
 <!doctype html>
 <html lang="en">
@@ -67,13 +66,15 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'admin_home' %}">
+                            <a class="nav-link {% if request.get_full_path == admin_url %}active{% endif %}"
+                                href="{% url 'admin_home' %}">
                                 <i class="fas fa-home"></i>
                                 Dashboard <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin_edit_product' product.slug %}">
+                            <a class="nav-link {% if request.get_full_path == admin_edit_url %}active{% endif %}"
+                                href="{% url 'admin_edit_product' product.slug %}">
                                 <i class="far fa-edit"></i>
                                 Edit Product
                             </a>
@@ -104,29 +105,29 @@
             {% endblock %}
         </div>
     </div>
-s
+    s
     {% if messages %}
-        <div class="message-container">
-            {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'includes/toasts/toast_error.html' %}
-                    {% elif level == 30 %}
-                        {% include 'includes/toasts/toast_warning.html' %}
-                    {% elif level == 25 %}
-                        {% include 'includes/toasts/toast_success.html' %}
-                    {% else %}
-                        {% include 'includes/toasts/toast_info.html' %}
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
-        </div>
+    <div class="message-container">
+        {% for message in messages %}
+        {% with message.level as level %}
+        {% if level == 40 %}
+        {% include 'includes/toasts/toast_error.html' %}
+        {% elif level == 30 %}
+        {% include 'includes/toasts/toast_warning.html' %}
+        {% elif level == 25 %}
+        {% include 'includes/toasts/toast_success.html' %}
+        {% else %}
+        {% include 'includes/toasts/toast_info.html' %}
+        {% endif %}
+        {% endwith %}
+        {% endfor %}
+    </div>
     {% endif %}
 
     {% block postloadjs %}
-        <script type="text/javascript">
-            $('.toast').toast('show');
-        </script>
+    <script type="text/javascript">
+        $('.toast').toast('show');
+    </script>
     {% endblock %}
 
 </body>
