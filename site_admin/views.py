@@ -7,7 +7,8 @@ from products.models import Product
 from .forms import (
     ProductForm,
     ProductFeatureFormset,
-    ProductImageFormset
+    ProductImageFormset,
+    DeliveryFormset
 )
 
 
@@ -71,6 +72,21 @@ def admin_edit_product(request, product_slug):
         'formset': formset,
         'image_formset': image_formset,
         'product': product,
+    }
+
+    return render(request, template, context)
+
+
+def admin_edit_delivery(request):
+    """
+    A view to Edit delivery options.
+    """
+
+    formset = DeliveryFormset()
+
+    template = 'site_admin/admin_delivery.html'
+    context = {
+        'formset': formset,
     }
 
     return render(request, template, context)

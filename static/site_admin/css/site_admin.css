@@ -1,0 +1,14 @@
+.w-12 {
+    width: 12.5%;
+}
+
+.no-active:active,
+.no-active:focus {
+    outline-width: 0px !important;
+    background-color: #f1f1f1;
+}
+
+.table-form:focus-within {
+    outline-width: 0px !important;
+    background-color: #f1f1f1;
+}

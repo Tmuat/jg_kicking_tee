@@ -5,11 +5,33 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav">
         <li class="nav-item">
-            
+            <a class="nav-link"
+                href="{% url 'home' %}">
+                <i class="fas fa-globe"></i>
+                Main Site
+            </a>
         </li>
         <hr class="menu-line m-0 w-25">
         <li class="nav-item menu-item-1 {% if request.get_full_path == home_url %}active{% endif %}">
-            <a class="nav-link" href="{% url 'home' %}">Home</a>
+            <a class="nav-link {% if request.get_full_path == admin_url %}active{% endif %}"
+                href="{% url 'admin_home' %}">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.get_full_path == admin_edit_url %}active{% endif %}"
+                href="{% url 'admin_edit_product' product.slug %}">
+                <i class="far fa-edit"></i>
+                Edit Product
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.get_full_path == admin_edit_delivery %}active{% endif %}"
+                href="{% url 'admin_edit_delivery' %}">
+                <i class="fas fa-mail-bulk"></i>
+                Edit Delivery Options
+            </a>
         </li>
     </ul>
 </div>

@@ -3,6 +3,7 @@
 {% url 'bag' as bag_url %}
 {% url 'admin_home' as admin_url %}
 {% url 'admin_edit_product' product.slug as admin_edit_url %}
+{% url 'admin_edit_delivery' as admin_edit_delivery %}
 
 <!doctype html>
 <html lang="en">
@@ -77,7 +78,7 @@
                             <a class="nav-link {% if request.get_full_path == admin_url %}active{% endif %}"
                                 href="{% url 'admin_home' %}">
                                 <i class="fas fa-home"></i>
-                                Dashboard <span class="sr-only">(current)</span>
+                                Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
@@ -85,6 +86,13 @@
                                 href="{% url 'admin_edit_product' product.slug %}">
                                 <i class="far fa-edit"></i>
                                 Edit Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.get_full_path == admin_edit_delivery %}active{% endif %}"
+                                href="{% url 'admin_edit_delivery' %}">
+                                <i class="fas fa-mail-bulk"></i>
+                                Edit Delivery Options
                             </a>
                         </li>
                     </ul>

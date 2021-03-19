@@ -1,6 +1,7 @@
 from django import forms
 
 from products.models import Product, ProductFeature, ProductImage
+from checkout.models import DeliveryOptions
 from .widgets import CustomClearableFileInput
 
 
@@ -64,4 +65,24 @@ ProductImageFormset = forms.inlineformset_factory(
         fields=('image', 'rank'),
         extra=4,
         max_num=4,
+    )
+
+
+class DeliveryForm(forms.ModelForm):
+
+    class Meta:
+        model = DeliveryOptions
+        fields = 'option', 'description', 'price', 'active'
+
+    # description = forms.CharField(widget=forms.Textarea)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-0 rounded-0 w-100 h-100 no-active'
+
+
+DeliveryFormset = forms.modelformset_factory(
+        DeliveryOptions,
+        form=DeliveryForm,
     )
