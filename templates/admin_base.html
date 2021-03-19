@@ -60,15 +60,13 @@
         </ul>
     </nav>
     <!-- Medium Down Nav -->
-    <div class="row bg-black d-flex d-md-none">
-        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap shadow p3">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
-                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {% include 'includes/admin_nav/admin-collapsed-nav.html' %}
-        </nav>
-    </div>
+    <nav class="navbar navbar-dark fixed-top bg-dark shadow p3 d-flex d-md-none">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
+            aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% include 'includes/admin_nav/admin-collapsed-nav.html' %}
+    </nav>
 
     <div class="container-fluid">
         <div class="row">

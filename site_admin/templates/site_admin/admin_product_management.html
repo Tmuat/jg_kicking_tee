@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-3 px-md-4">
     <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pl-2 pl-md-0 pr-2 pr-md-0 pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Product Management</h1>
     </div>
     <div class="row">
@@ -14,13 +14,13 @@
                 {% csrf_token %}
                 <div class="row">
                     <!-- Product Form -->
-                    <div class="col-12 col-md-5">
+                    <div class="col-12 col-md-6 px-xl-5">
                         {{ form|crispy }}
                     </div>
                     <!-- Product Form End -->
 
                     <!-- Product Features Form -->
-                    <div class="col-12 col-md-5 responsive-border-left">
+                    <div class="col-12 col-md-6 px-xl-5 responsive-border-left">
                         {{ formset.non_form_errors|crispy }}
                         <div class="row">
                             {% for form in formset %}
@@ -49,12 +49,11 @@
                     </div>
                     <!-- Product Features Form End -->
                 </div>
-                <div class="col-10">
-                    <hr>
-                </div>
+                
+                <hr>
 
                 <!-- Product Images Form -->
-                <div class="col-10 text-center">
+                <div class="col-12 px-xl-5 text-center">
                     {{ image_formset.non_form_errors|crispy }}
                     <div class="row">
                         {% for form in image_formset %}
@@ -68,7 +67,7 @@
                             </label>
                         </div>
                         {% endif %}
-                        <div class="col-6 col-md-3 p-0 inline-formset">
+                        <div class="col-6 col-lg-3 p-0 inline-formset">
                             {{ form.image }}
                             {% if form.instance.pk %}
                             <div class="custom-control custom-checkbox mt-2"
@@ -80,7 +79,7 @@
                                     for="id_product_images-{{ forloop.counter0 }}-DELETE">Delete</label>
                             </div>
                             {% endif %}
-                            <div class="custom-select-width mx-auto pl-2 pr-2">
+                            <div class="custom-select-width mx-auto px-3">
                                 {{ form.rank|as_crispy_field }}
                             </div>
                         </div>
@@ -90,7 +89,7 @@
                 </div>
                 <!-- Product Images End -->
 
-                <div class="col-10 text-right mt-2 mb-3">
+                <div class="col-12 text-right mt-2 mb-3 px-xl-5">
                     <a class="btn bg-yellow border-black rounded-0 btn-text-sm mt-2 mt-sm-0" href="">Cancel</a>
                     <button class="btn bg-black border-yellow rounded-0 btn-text-sm mt-2 mt-sm-0" type="submit">Update
                         Product</button>
@@ -99,4 +98,9 @@
         </div>
     </div>
 </main>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'site_admin/js/edit_product.js' %}"></script>
 {% endblock %}
