@@ -25,6 +25,11 @@
     background-color: #f1f1f1;
 }
 
+.page-item.active .page-link {
+    background-color: #000000;
+    border-color: #000000;
+}
+
 /* || Media Queries */
 
 /* Extra small devices (phones, 600px and down) */

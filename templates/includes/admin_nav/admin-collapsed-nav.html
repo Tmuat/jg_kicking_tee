@@ -20,6 +20,13 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {% if request.get_full_path == admin_orders %}active{% endif %}"
+                href="{% url 'admin_orders' %}">
+                <i class="far fa-edit"></i>
+                All Orders
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {% if request.get_full_path == admin_edit_url %}active{% endif %}"
                 href="{% url 'admin_edit_product' product.slug %}">
                 <i class="far fa-edit"></i>

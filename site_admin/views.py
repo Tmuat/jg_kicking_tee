@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-
+from django.views.generic.list import ListView
 
 from checkout.models import Order
 from products.models import Product
@@ -116,3 +116,13 @@ def admin_edit_delivery(request):
     }
 
     return render(request, template, context)
+
+
+class OrdersListView(ListView):
+
+    template_name = 'site_admin/admin_orders.html'
+    queryset = Order.objects.all()
+    context_object_name = 'orders'
+    paginate_by = 20
+    ordering = ['-date']
+    allow_empty_first_page = True

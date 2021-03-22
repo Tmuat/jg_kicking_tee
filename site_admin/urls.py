@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import (
     admin_home, admin_edit_product,
-    admin_edit_delivery
+    admin_edit_delivery,
+    OrdersListView
 )
 
 urlpatterns = [
@@ -12,4 +13,7 @@ urlpatterns = [
     path('edit-delivery/',
          admin_edit_delivery,
          name='admin_edit_delivery'),
+    path('orders/',
+         OrdersListView.as_view(),
+         name='admin_orders'),
 ]
