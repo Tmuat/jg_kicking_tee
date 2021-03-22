@@ -4,11 +4,11 @@ import time
 from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 
 from .models import Order, OrderLineItem, DeliveryOptions
-from products.models import Product
+from products.models import Product, ProductStock
 from users.models import UserProfile
 
 
@@ -138,6 +138,9 @@ class StripeWH_Handler:
                 )
                 for product_sku, quantity in json.loads(bag).items():
                     product = Product.objects.get(sku=product_sku)
+                    product_stock = ProductStock.objects.get(product=product)
+                    product_stock.stock_quantity = product_stock.stock_quantity - quantity
+                    product_stock.save()
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,

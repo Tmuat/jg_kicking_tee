@@ -10,7 +10,7 @@ from django.views.decorators.http import require_POST
 
 from .forms import OrderForm
 from .models import DeliveryOptions, OrderLineItem, Order
-from products.models import Product
+from products.models import Product, ProductStock
 from users.models import UserProfile
 from users.forms import UserProfileForm
 from bag.context_processors import bag_contents
@@ -72,6 +72,14 @@ def checkout(request):
             for product_sku, quantity in bag.items():
                 try:
                     product = Product.objects.get(sku=product_sku)
+                    product_stock = ProductStock.objects.get(product=product)
+                    if quantity > product_stock.stock_quantity:
+                        messages.error(request, "There is a stock error!"
+                                       " Please contact support")
+                        return redirect('checkout')
+                    else:
+                        product_stock.stock_quantity = product_stock.stock_quantity - quantity
+                        product_stock.save()
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,
