@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('[data-toggle="popover"]').popover();
-    
+
     var max_quantity = $( "input[name=stock_quantity]" ).val();
 
     // Disable +/- buttons outside 1-99 range
