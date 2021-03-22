@@ -61,6 +61,12 @@ $(document).ready(function () {
     $('.qty_input').change(function () {
         var productId = $(this).data('product_id');
         handleEnableDisable(productId);
+        var currentValue = parseInt($(this).val());
+        if (currentValue > max_quantity){
+            $('#quantity_check').text(`Invalid Quantity!`);
+        } else {
+            $('#quantity_check').text(``);
+        }
     });
     // Increment quantity
     $('.increment-qty').click(function (e) {
