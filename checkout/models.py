@@ -47,6 +47,14 @@ pre_save.connect(pre_save_create_delivery_sku, sender=DeliveryOptions)
 
 
 class Order(models.Model):
+    STATUS  = (
+        ('processing', 'Processing'),
+        ('out_for_delivery', 'Out For Delivery'),
+        ('complete', 'Complete'),
+        ('refunded', 'Refunded'),
+        ('cancelled', 'Cancelled')
+    )
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     order_number = models.CharField(max_length=8,
                                     null=True,
@@ -86,6 +94,11 @@ class Order(models.Model):
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False,
                                   default='')
+    status = models.CharField(max_length=100,
+                              null=False,
+                              blank=False,
+                              default='processing',
+                              choices=STATUS)
 
     def update_total(self):
         """
