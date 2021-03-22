@@ -22,6 +22,9 @@
                     <div class="table-responsive">
                         <table class="table table-sm">
                             {% for form in formset %}
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
                             {% if forloop.first %}
                             <thead>
                                 <tr>

@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 
 
-from checkout.models import Order
+from checkout.models import Order, DeliveryOptions
 from products.models import Product
 from .forms import (
     ProductForm,
@@ -16,6 +16,10 @@ def admin_home(request):
     """
     A view to return the admin home page.
     """
+
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
     orders = Order.objects.all().order_by('-date')[:8]
 
@@ -82,7 +86,22 @@ def admin_edit_delivery(request):
     A view to Edit delivery options.
     """
 
-    formset = DeliveryFormset()
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        formset = DeliveryFormset(request.POST)
+        if formset.is_valid():
+            formset.save()
+            messages.success(request, 'Successfully updated delivery!')
+            return redirect(reverse('admin_edit_delivery'))
+        else:
+            messages.error(request,
+                           ('Failed to update delivery. '
+                            'Please ensure the form is valid.'))
+    else:
+        formset = DeliveryFormset()
 
     template = 'site_admin/admin_delivery.html'
     context = {
