@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
+
     var max_quantity = $( "input[name=stock_quantity]" ).val();
 
     $("#thumbnail1").click(function () {
@@ -63,10 +65,8 @@ $(document).ready(function () {
         handleEnableDisable(productId);
         var currentValue = parseInt($(this).val());
         if (currentValue > max_quantity){
-            $('#quantity_check').text(`Invalid Quantity!`);
-        } else {
-            $('#quantity_check').text(``);
-        }
+            $(this).popover('show');
+        };
     });
     // Increment quantity
     $('.increment-qty').click(function (e) {

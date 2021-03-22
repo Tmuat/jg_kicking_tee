@@ -70,7 +70,8 @@
                                         </button>
                                     </div>
                                     <input class="form-control qty_input" type="number" name="quantity" value="1"
-                                        min="1" max="99" data-product_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                        min="1" max="99" data-product_id="{{ product.id }}" id="id_qty_{{ product.id }}"
+                                        title="Error!" data-content="Max Quantity: {{ product.product_stock.stock_quantity }}">
                                     <div class="input-group-append">
                                         <button class="increment-qty btn bg-black rounded-0 input-btn"
                                             data-product_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
@@ -80,7 +81,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                <p class="text-danger mb-0 text-center" id="quantity_check"></p>
                             </div>
                         </div>
                         <div class="mb-2 mb-md-1 mb-lg-2 mb-xl-2">
