@@ -3,7 +3,8 @@
 
 {% block content %}
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Overall Numbers</h1>
     </div>
     <div class="row">
@@ -20,7 +21,8 @@
             <h2>{{ completed_order_count }}</h2>
         </div>
     </div>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Recent Orders</h1>
     </div>
     <div class="table-responsive">
@@ -35,7 +37,9 @@
                     <th class="border-top-0 d-none d-lg-table-cell">Delivery</th>
                     <th class="border-top-0 d-lg-none">Full Name & Delivery</th>
                     <th class="border-top-0">Grand Total</th>
-                    <th class="border-top-0">Status</th>
+                    <th class="border-top-0 d-none d-lg-table-cell">Status</th>
+                    <th class="border-top-0 d-lg-none">Status & Select</th>
+                    <th class="border-top-0 d-none d-lg-table-cell">Select</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,10 +50,14 @@
                     <td class="d-none d-lg-table-cell">{{ order.date|date:"D - d/m/y - H:i" }}</td>
                     <td class="d-none d-md-table-cell d-lg-none">{{ order.date|date:"d/m/y" }}</td>
                     <td class="d-none d-lg-table-cell">{{ order.full_name }}</td>
-                    <td class="d-none d-lg-table-cell" title="{{ order.delivery_method }}">{{ order.delivery_method|truncatechars:20 }}</td>
-                    <td class="d-lg-none" title="{{ order.delivery_method }}">{{ order.full_name }},<br>{{ order.delivery_method|truncatechars:15 }}</td>
+                    <td class="d-none d-lg-table-cell" title="{{ order.delivery_method }}">
+                        {{ order.delivery_method|truncatechars:20 }}</td>
+                    <td class="d-lg-none" title="{{ order.delivery_method }}">
+                        {{ order.full_name }},<br>{{ order.delivery_method|truncatechars:15 }}</td>
                     <td>£{{ order.grand_total }}</td>
-                    <td>{{ order.status|title }}</td>
+                    <td class="d-none d-lg-table-cell">{{ order.status|title }}</td>
+                    <td><span class="d-block d-lg-none">{{ order.status|title }}</span><input type="checkbox" id="{{ order.id }}"
+                            value="{{ order.id }}"></td>
                 </tr>
                 {% endfor %}
             </tbody>
