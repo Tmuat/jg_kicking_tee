@@ -58,11 +58,12 @@
                                 <form class="form update-form" method="POST"
                                     action="{% url 'adjust_bag' product.product.id %}">
                                     {% csrf_token %}
-                                    <div class="form-group">
+                                    {% if product.product.product_stock.stock_quantity > 0 %}
+                                    <div class="form-group mb-2">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <button class="decrement-qty btn btn-sm bg-black rounded-0"
-                                                    data-product_id="{{ pproduct.product.id }}"
+                                                    data-product_id="{{ product.product.id }}"
                                                     id="decrement-qty_{{ product.product.id }}">
                                                     <span>
                                                         <i class="fas fa-minus fa-sm"></i>
@@ -72,7 +73,8 @@
                                             <input class="form-control form-control-sm qty_input" type="number"
                                                 name="quantity" value="{{ product.quantity }}" min="1" max="99"
                                                 data-product_id="{{ product.product.id }}"
-                                                id="id_qty_{{ product.product.id }}">
+                                                id="id_qty_{{ product.product.id }}"
+                                                title="Error!" data-content="Max Quantity: {{ product.product.product_stock.stock_quantity }}">
                                             <div class="input-group-append">
                                                 <button class="increment-qty btn btn-sm bg-black rounded-0"
                                                     data-product_id="{{ product.product.id }}"
@@ -86,6 +88,15 @@
                                     </div>
                                 </form>
                                 <a class="update-link text-info float-left"><small>Update</small></a>
+                                {% else %}
+                                <div class="form-group">
+                                        <div class="input-group">
+                                            <p class="text-danger mb-0 text-center w-100">Out of stock.</p>
+                                        </div>
+                                    </div>
+                                </form>
+                                <a class="text-grey float-left disabled"><small>Update</small></a>
+                                {% endif %}
                                 <a class="remove-item text-danger float-right"
                                     id="remove_{{ product.product.id }}"><small>Remove</small></a>
                             </div>
@@ -117,7 +128,7 @@
                                 </span>
                                 <span class="text-uppercase">Keep Shopping</span>
                             </a>
-                            {% if delivery_set %}
+                            {% if delivery_set and product.product_stock.stock_quantity > 0 %}
                                 <a href="{% url 'checkout' %}" class="btn bg-black border-yellow rounded-0 btn-lg btn-text-sm mt-2 mt-sm-0">
                                     <span class="text-uppercase">Secure Checkout</span>
                                     <span class="icon">
@@ -151,6 +162,7 @@
         </div>
     </div>
 </div>
+<input type="hidden" name="stock_quantity" value="{{ product.product_stock.stock_quantity }}">
 
 <!-- Modal -->
 <div class="modal fade" id="deliveryModal" data-backdrop="static" data-keyboard="false" tabindex="-1"

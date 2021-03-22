@@ -41,9 +41,16 @@ def add_to_bag(request, product_id):
     logger.debug(f'ATB: Found {product.name}')
 
     quantity = int(request.POST.get('quantity'))
-    logger.debug(f'ATB:Previous Quantity: {quantity}')
+    logger.debug(f'ATB: Previous Quantity: {quantity}')
 
     redirect_url = request.POST.get('redirect_url')
+
+    if quantity > product.product_stock.stock_quantity:
+        messages.error(request, "There isn't enough stock"
+                                " of the selected product")
+        logger.debug('ATB: Tried To Add Too Much Quantity')
+        return redirect(redirect_url)
+
     bag = request.session.get('bag', {})
     logger.debug(f'ATB: Previous Bag: {bag}')
 
@@ -71,6 +78,12 @@ def adjust_bag(request, product_id):
     logger.debug(f'AB: Found {product.name}')
 
     quantity = int(request.POST.get('quantity'))
+
+    if quantity > product.product_stock.stock_quantity:
+        messages.error(request, "There isn't enough stock"
+                                " of the selected product")
+        logger.debug('AB: Tried To Add Too Much Quantity')
+        return redirect('bag')
 
     bag = request.session.get('bag', {})
     logger.debug(f'AB: Previous Bag: {bag}')

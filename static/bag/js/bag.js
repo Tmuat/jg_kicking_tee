@@ -1,9 +1,13 @@
 $(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
+    
+    var max_quantity = $( "input[name=stock_quantity]" ).val();
+
     // Disable +/- buttons outside 1-99 range
     function handleEnableDisable(productId) {
         var currentValue = parseInt($(`#id_qty_${productId}`).val());
         var minusDisabled = currentValue < 2;
-        var plusDisabled = currentValue > 98;
+        var plusDisabled = currentValue >= max_quantity;
         $(`#decrement-qty_${productId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${productId}`).prop('disabled', plusDisabled);
     }
@@ -19,6 +23,10 @@ $(document).ready(function () {
     $('.qty_input').change(function () {
         var productId = $(this).data('product_id');
         handleEnableDisable(productId);
+        var currentValue = parseInt($(this).val());
+        if (currentValue > max_quantity){
+            $(this).popover('show');
+        };
     });
     // Increment quantity
     $('.increment-qty').click(function (e) {
