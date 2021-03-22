@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    var max_quantity = $( "input[name=stock_quantity]" ).val();
+
     $("#thumbnail1").click(function () {
         if ($("#product_image1").hasClass("d-none")) {
 
@@ -43,7 +45,7 @@ $(document).ready(function () {
     function handleEnableDisable(productId) {
         var currentValue = parseInt($(`#id_qty_${productId}`).val());
         var minusDisabled = currentValue < 2;
-        var plusDisabled = currentValue > 98;
+        var plusDisabled = currentValue >= max_quantity;
         $(`#decrement-qty_${productId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${productId}`).prop('disabled', plusDisabled);
     }
