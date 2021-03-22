@@ -1,7 +1,8 @@
 import uuid
 
 from django.db import models
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
 from django.shortcuts import reverse
 
 from common.utils import unique_sku_generator
@@ -72,3 +73,30 @@ class ProductFeature(models.Model):
 
     def __str__(self):
         return self.product.name
+
+
+class ProductStock(models.Model):
+    stock_quantity = models.IntegerField(null=False,
+                                         blank=False,
+                                         default=0)
+    product = models.OneToOneField(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='product_stock',
+    )
+
+    def __str__(self):
+        return self.product.name
+
+
+@receiver(post_save, sender=Product)
+def create_or_update_product_stock(sender, instance, created, **kwargs):
+    """
+    Create or update product stock.
+    """
+    qs_exists = ProductStock.objects.filter(
+                    product=instance).exists()
+    if qs_exists:
+        pass
+    elif created:
+        ProductStock.objects.create(product=instance)

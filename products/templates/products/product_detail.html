@@ -58,7 +58,7 @@
                     <div class="form-row">
                         <div class="col-12 mb-2 mb-md-1 mb-lg-2 mb-xl-2">
                             <p class="mb-1"><strong>Quantity:</strong></p>
-                            <div class="form-group w-50 custom-input">
+                            <div class="w-50 custom-input">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <button class="decrement-qty btn bg-black rounded-0 input-btn"
@@ -81,10 +81,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mb-2 mb-md-1 mb-lg-2 mb-xl-2">
+                            <p class="mb-1"><strong>Stock:</strong></p>
+                            {% if product.product_stock.stock_quantity == 0 %}
+                                <p class="text-danger">Out of stock!</p>
+                            {% elif product.product_stock.stock_quantity > 10 %}
+                                <p class="text-success">More than 10 available</p>
+                            {% else %}
+                                <p>Only {{ product.product_stock.stock_quantity }} available <span class="text-danger"><small>(Low Stock!)</small></span></p>
+                            {% endif %}
+                        </div>
                         <div class="col-12 align-top">
+                            {% if product.product_stock.stock_quantity == 0 %}
+                            <span class="btn btn-oos rounded-0 text-uppercase mb-2 mb-md-1 mb-lg-2 mb-xl-3 disabled">No Stock</span>
+                            {% else %}
                             <input type="submit"
+                                value="Add to Bag"
                                 class="btn btn-add rounded-0 text-uppercase mb-2 mb-md-1 mb-lg-2 mb-xl-3"
-                                value="Add to Bag">
+                                >
+                            {% endif %}
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
