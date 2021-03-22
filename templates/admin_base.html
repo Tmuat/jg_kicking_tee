@@ -81,6 +81,16 @@
                                 Dashboard
                             </a>
                         </li>
+                    </ul>
+
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Site Settings</span>
+                        <a class="d-flex align-items-center text-muted" href="#">
+                            <span data-feather="plus-circle"></span>
+                        </a>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
                         <li class="nav-item">
                             <a class="nav-link {% if request.get_full_path == admin_edit_url %}active{% endif %}"
                                 href="{% url 'admin_edit_product' product.slug %}">
@@ -93,22 +103,6 @@
                                 href="{% url 'admin_edit_delivery' %}">
                                 <i class="fas fa-mail-bulk"></i>
                                 Edit Delivery Options
-                            </a>
-                        </li>
-                    </ul>
-
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
-                        <a class="d-flex align-items-center text-muted" href="#">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Current month
                             </a>
                         </li>
                     </ul>
