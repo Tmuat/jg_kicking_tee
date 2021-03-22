@@ -9,6 +9,37 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Recent Orders</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <ul class="pagination mb-0 mb-md-2">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link text-dark" href="?page=1" aria-disabled="true">First</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-dark" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="?page=1" aria-disabled="true">First</a>
+                </li>
+                {% endif %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link text-white bg-black" href="">{{ page_obj.number }} <span class="sr-only">(current)</span></a>
+                </li>
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link text-dark" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-dark" href="?page={{ paginator.num_pages }}">Last</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="?page={{ paginator.num_pages }}">Last</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-light table-sm">
@@ -41,37 +72,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div class="w-100">
-            <ul class="pagination">
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link text-dark" href="?page=1" aria-disabled="true">First</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link text-dark" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="?page=1" aria-disabled="true">First</a>
-                </li>
-                {% endif %}
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link text-white bg-black" href="#">{{ page_obj.number }} <span class="sr-only">(current)</span></a>
-                </li>
-                {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link text-dark" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link text-dark" href="?page={{ paginator.num_pages }}">Last</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="?page={{ paginator.num_pages }}">Last</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
     </div>
 </main>
 {% endblock %}
