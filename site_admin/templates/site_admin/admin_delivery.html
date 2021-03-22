@@ -17,31 +17,32 @@
                 {% csrf_token %}
 
                 <!-- Delivery Formsets -->
-                <div class="col-12 px-xl-5 text-center">
+                <div class="col-12 px-0 px-xl-5 text-center">
                     {{ formset.management_form|crispy }}
                     <div class="table-responsive">
-                    <table class="table table-sm">
-                        {% for form in formset %}
-                        {% if forloop.first %}
-                        <thead>
-                            <tr>
-                                <th class="border-right border-top-0">{{ form.option.label_tag }}</th>
-                                <th class="border-right border-top-0">{{ form.description.label_tag }}</th>
-                                <th class="border-right border-top-0">{{ form.price.label_tag }}</th>
-                                <th class="border-top-0">{{ form.active.label_tag }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% endif %}
-                            <tr>
-                                <td class="border-right border-bottom p-1 w-25 table-form">{{ form.option }}</td>
-                                <td class="border-right border-bottom p-1 w-50 table-form">{{ form.description }}</td>
-                                <td class="border-right border-bottom p-1 w-12 table-form">{{ form.price }}</td>
-                                <td class="p-1 border-bottom w-12 table-form">{{ form.active }}</td>
-                            </tr>
-                    {% endfor %}
-                        </tbody>
-                    </table>
+                        <table class="table table-sm">
+                            {% for form in formset %}
+                            {% if forloop.first %}
+                            <thead>
+                                <tr>
+                                    <th class="border-right border-top-0">{{ form.option.label_tag }}</th>
+                                    <th class="border-right border-top-0">{{ form.description.label_tag }}</th>
+                                    <th class="border-right border-top-0">{{ form.price.label_tag }}</th>
+                                    <th class="border-top-0">{{ form.active.label_tag }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% endif %}
+                                <tr>
+                                    <td class="border-right border-bottom p-1 custom-w-option table-form">{{ form.option }}</td>
+                                    <td class="border-right border-bottom p-1 custom-w-desc table-form">{{ form.description }}</td>
+                                    <td class="border-right border-bottom p-1 custom-w-price table-form">{{ form.price }}</td>
+                                    <td class="p-1 border-bottom table-form custom-w-active">{{ form.active }}</td>
+                                </tr>
+                        {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- Delivery End -->
 
@@ -54,4 +55,9 @@
         </div>
     </div>
 </main>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'site_admin/js/edit_delivery.js' %}"></script>
 {% endblock %}
