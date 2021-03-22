@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 
 
-from checkout.models import Order, DeliveryOptions
+from checkout.models import Order
 from products.models import Product
 from .forms import (
     ProductForm,
@@ -21,10 +21,17 @@ def admin_home(request):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
+    order_count = Order.objects.count()
+
+    completed_order_count = Order.objects. \
+        filter(status='complete').count()
+
     orders = Order.objects.all().order_by('-date')[:8]
 
     context = {
         'orders': orders,
+        'order_count': order_count,
+        'completed_order_count': completed_order_count
     }
 
     template = 'site_admin/admin_home.html'

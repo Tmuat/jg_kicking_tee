@@ -47,7 +47,7 @@ pre_save.connect(pre_save_create_delivery_sku, sender=DeliveryOptions)
 
 
 class Order(models.Model):
-    STATUS  = (
+    STATUS = (
         ('processing', 'Processing'),
         ('out_for_delivery', 'Out For Delivery'),
         ('complete', 'Complete'),
