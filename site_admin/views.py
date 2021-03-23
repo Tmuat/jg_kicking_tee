@@ -1,10 +1,14 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.mail import send_mass_mail, BadHeaderError
 from django.contrib import messages
 from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.template.loader import render_to_string
 
 from checkout.models import Order
 from products.models import Product
+from contact.models import EmailInfo
 from .forms import (
     ProductForm,
     ProductFeatureFormset,
@@ -130,7 +134,6 @@ def all_orders(request):
     page = request.GET.get('page', 1)
 
     if request.GET:
-
         if 'q' in request.GET:
             query = request.GET['q']
 
@@ -164,12 +167,35 @@ def dispatch_orders(request):
     """
     Change the status of orders to dispatched.
     """
+    email = EmailInfo.objects.first()
+    website_email = str(
+        '"' + email.email_show_name + '" <' + email.email + '>'
+    )
 
     if request.method == 'POST':
         selected = request.POST.get('id-selected')
         ids = selected.split(",")
         Order.objects.filter(id__in=ids).update(status="dispatched")
-        messages.success(request, 'Dispatch Emails Sent!')
+        email_messages = list()
+        for count, order_id in enumerate(ids):
+            order = Order.objects.get(id=order_id)
+            message_name = str('dispatch_message' + str(count))
+            subject = ("JimmyG Kicking Tee Dispatch Notice:" +
+                       f"{order.order_number}")
+            message = render_to_string('site_admin/emails/dispatch_email.txt',
+                                       {'order': order})
+            message_name = (
+                subject,
+                message,
+                website_email,
+                [order.email])
+            email_messages.append(message_name)
+
+        try:
+            send_mass_mail(email_messages, fail_silently=False)
+            messages.success(request, 'Dispatch Emails Sent!')
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
 
     redirect_url = request.POST.get('redirect_url')
 

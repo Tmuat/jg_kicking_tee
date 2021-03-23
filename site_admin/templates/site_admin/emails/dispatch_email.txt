@@ -1,0 +1,13 @@
+{% autoescape off %}
+Hello,
+
+Order {{ order.order_number }} has been marked as dispatched.
+
+The order has been sent to:
+{{ order.street_address1 }},
+{{ order.postcode }},
+{{ order.country }}
+
+Sincerely,
+The JimmyG Kicking Tee Website Team
+{% endautoescape %}
