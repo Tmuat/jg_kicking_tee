@@ -137,6 +137,7 @@ def dispatch_orders(request):
         selected = request.POST.get('id-selected')
         ids = selected.split(",")
         Order.objects.filter(id__in=ids).update(status="dispatched")
+        messages.success(request, 'Dispatch Emails Sent!')
 
     redirect_url = request.POST.get('redirect_url')
 
