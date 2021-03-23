@@ -24,6 +24,18 @@
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Recent Orders</h1>
+        <div class="input-group w-auto">
+            <select name="select-options" id="select-options" class="btn btn-sm btn-outline-secondary custom-select">
+                <option id="select-text">Mark as...</option>
+                <option value="dispatched">Dispatched</option>
+                <option value="completed">Completed</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-sm btn-outline-secondary " id="select-go">
+                Go
+                </button>
+            </div>
+        </div>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-light table-sm">
@@ -56,12 +68,21 @@
                         {{ order.full_name }},<br>{{ order.delivery_method|truncatechars:15 }}</td>
                     <td>£{{ order.grand_total }}</td>
                     <td class="d-none d-lg-table-cell">{{ order.status|title }}</td>
-                    <td><span class="d-block d-lg-none">{{ order.status|title }}</span><input type="checkbox" id="{{ order.id }}"
-                            value="{{ order.id }}"></td>
+                    <td><span class="d-block d-lg-none">{{ order.status|title }}</span><input type="checkbox" class="order-checks" id="{{ order.id }}"></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    <form id="select-form" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="id-selected" id="id-selected">
+        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+    </form>
 </main>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'site_admin/js/admin.js' %}"></script>
 {% endblock %}
