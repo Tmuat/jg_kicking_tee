@@ -4,7 +4,6 @@
 {% url 'admin_home' as admin_url %}
 {% url 'admin_edit_product' product.slug as admin_edit_url %}
 {% url 'admin_edit_delivery' as admin_edit_delivery %}
-{% url 'admin_orders' as admin_orders %}
 
 <!doctype html>
 <html lang="en">
@@ -83,7 +82,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.get_full_path == admin_orders %}active{% endif %}"
+                            <a class="nav-link {% if order_page %}active{% endif %}"
                                 href="{% url 'admin_orders' %}">
                                 <i class="far fa-edit"></i>
                                 All Orders

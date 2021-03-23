@@ -2,7 +2,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.views.generic.list import ListView
 
 from checkout.models import Order
 from products.models import Product
@@ -125,6 +124,7 @@ def all_orders(request):
     A view to show all orders, including filtering and search queries
     """
 
+    order_page = True
     order_list = Order.objects.all().order_by('-date')
     query = None
     page = request.GET.get('page', 1)
@@ -151,6 +151,7 @@ def all_orders(request):
     template_name = 'site_admin/admin_orders.html'
 
     context = {
+        'order_page': order_page,
         'orders': orders,
         'num_pages': num_pages,
         'query': query,
