@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (
     admin_home, admin_edit_product,
     admin_edit_delivery,
-    OrdersListView,
+    all_orders,
     dispatch_orders,
     complete_orders
 )
@@ -16,7 +16,7 @@ urlpatterns = [
          admin_edit_delivery,
          name='admin_edit_delivery'),
     path('orders/',
-         OrdersListView.as_view(),
+         all_orders,
          name='admin_orders'),
     path('dispatch/',
          dispatch_orders,

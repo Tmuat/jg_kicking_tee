@@ -1,3 +1,7 @@
+.custom-select-width {
+    width: 100%;
+}
+
 .custom-w-active {
     width: 18%;
 }
@@ -39,7 +43,9 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-
+    .custom-select-width {
+        width: 75%;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -68,5 +74,7 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
+    .custom-select-width {
+        width: 50%;
+    }
 }

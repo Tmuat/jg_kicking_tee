@@ -1,4 +1,6 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.generic.list import ListView
 
@@ -118,14 +120,43 @@ def admin_edit_delivery(request):
     return render(request, template, context)
 
 
-class OrdersListView(ListView):
+def all_orders(request):
+    """
+    A view to show all orders, including filtering and search queries
+    """
+
+    order_list = Order.objects.all().order_by('-date')
+    query = None
+    page = request.GET.get('page', 1)
+
+    if request.GET:
+
+        if 'q' in request.GET:
+            query = request.GET['q']
+
+            queries = Q(order_number__icontains=query) \
+                | Q(full_name__icontains=query)
+            order_list = order_list.filter(queries)
+
+    paginator = Paginator(order_list, 25)
+    num_pages = paginator.num_pages
+
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
 
     template_name = 'site_admin/admin_orders.html'
-    queryset = Order.objects.all()
-    context_object_name = 'orders'
-    paginate_by = 20
-    ordering = ['-date']
-    allow_empty_first_page = True
+
+    context = {
+        'orders': orders,
+        'num_pages': num_pages,
+        'query': query,
+    }
+
+    return render(request, template_name, context)
 
 
 def dispatch_orders(request):
