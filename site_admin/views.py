@@ -175,27 +175,30 @@ def dispatch_orders(request):
     if request.method == 'POST':
         selected = request.POST.get('id-selected')
         ids = selected.split(",")
-        Order.objects.filter(id__in=ids).update(status="dispatched")
         email_messages = list()
         for count, order_id in enumerate(ids):
             order = Order.objects.get(id=order_id)
-            message_name = str('dispatch_message' + str(count))
-            subject = ("JimmyG Kicking Tee Dispatch Notice:" +
-                       f"{order.order_number}")
-            message = render_to_string('site_admin/emails/dispatch_email.txt',
-                                       {'order': order})
-            message_name = (
-                subject,
-                message,
-                website_email,
-                [order.email])
-            email_messages.append(message_name)
-
+            if order.status == "dispatched" or order.status == "complete":
+                pass
+            else:
+                message_name = str('dispatch_message' + str(count))
+                subject = ("JimmyG Kicking Tee Dispatch Notice:" +
+                           f"{order.order_number}")
+                message = render_to_string('site_admin/emails/dispatch_email.txt',
+                                           {'order': order})
+                message_name = (
+                    subject,
+                    message,
+                    website_email,
+                    [order.email])
+                email_messages.append(message_name)
         try:
             send_mass_mail(email_messages, fail_silently=False)
             messages.success(request, 'Dispatch Emails Sent!')
         except BadHeaderError:
             return HttpResponse('Invalid header found.')
+
+        Order.objects.filter(id__in=ids).update(status="dispatched")
 
     redirect_url = request.POST.get('redirect_url')
 
