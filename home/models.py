@@ -36,6 +36,10 @@ class LandingImage(UpdatedAndCreated):
 
 
 class Testimonial(UpdatedAndCreated):
+    ACTIVE = (
+        (True, 'Active'),
+        (False, 'Not Active'),
+    )
     name = models.CharField(max_length=255,
                             null=False,
                             blank=False)
@@ -45,7 +49,8 @@ class Testimonial(UpdatedAndCreated):
     image = models.ImageField(upload_to="images/testimonial",
                               null=True,
                               blank=False)
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=False,
+                                 choices=ACTIVE)
 
     class Meta:
         verbose_name_plural = "Testimonials"
