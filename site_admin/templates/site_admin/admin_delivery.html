@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-12 mx-auto">
-            <form method="POST" action="" class="form mb-2 w-100">
+            <form method="POST" action="{% url 'admin_edit_delivery' %}" class="form mb-2 w-100">
                 {% csrf_token %}
 
                 <!-- Delivery Formsets -->
