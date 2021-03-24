@@ -1,0 +1,77 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'site_admin/css/site_admin.css' %}">
+{% endblock %}
+
+{% block content %}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-3 px-md-4">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pl-2 pl-md-0 pr-2 pr-md-0 pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Testimonials</h1>
+    </div>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <form method="POST" action="" class="form mb-2 w-100" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Testimonial Formsets -->
+                <div class="col-12 px-0 px-xl-5 text-center">
+                    {{ formset.management_form|crispy }}
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            {% for form in formset %}
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
+                            {% if forloop.first %}
+                            <thead>
+                                <tr>
+                                    <th class="border-right border-top-0">{{ form.name.label_tag }}</th>
+                                    <th class="border-right border-top-0">{{ form.testimonial.label_tag }}</th>
+                                    <th class="border-right border-top-0">{{ form.image.label_tag }}</th>
+                                    <th class="border-top-0">{{ form.active.label_tag }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% endif %}
+                                <tr>
+                                    <td class="border-right border-bottom p-1 custom-w-name table-form">{{ form.name }}</td>
+                                    <td class="border-right border-bottom p-1 custom-w-testimonial table-form">{{ form.testimonial }}</td>
+                                    <td class="border-right border-bottom p-3 custom-w-image table-form text-center">
+                                        {{ form.image }}
+                                        <div class="mt-2">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="form-{{ forloop.counter0 }}-image" id="id_form-{{ forloop.counter0 }}-image" accept="image/*">
+                                                <span class="custom-file-upload">Upload <i class="fas fa-upload"></i></span>
+                                                <p class="text-transparent text-danger mb-0" id="filename{{ forloop.counter0 }}">New Image: </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-1 border-bottom table-form custom-w-active-tests">
+                                        {{ form.active }}
+                                    </td>
+                                </tr>
+                        {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Testimonials End -->
+
+                <div class="col-12 text-right mt-2 mb-3">
+                    <a class="btn bg-yellow border-black rounded-0 btn-text-sm mt-2 mt-sm-0" href="">Cancel</a>
+                    <button class="btn bg-black border-yellow rounded-0 btn-text-sm mt-2 mt-sm-0" type="submit">Update
+                        Testimonials</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'site_admin/js/edit_testimonials.js' %}"></script>
+{% endblock %}

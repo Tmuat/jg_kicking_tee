@@ -18,6 +18,22 @@
     width: 25%;
 }
 
+.custom-w-name {
+    width: 15%;
+}
+
+.custom-w-testimonial {
+    width: 53%;
+}
+
+.custom-w-image {
+    width: 20%;
+}
+
+.custom-w-active-tests {
+    width: 12%;
+}
+
 .no-active:active,
 .no-active:focus {
     outline-width: 0px !important;
@@ -32,6 +48,32 @@
 .page-item.active .page-link {
     background-color: #000000;
     border-color: #000000;
+}
+
+.custom-file-upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    cursor: pointer;
+}
+
+.custom-file-input {
+    height: 21px;
+}
+
+.text-transparent {
+    opacity: 0;
+}
+
+.custom-file-input {
+    cursor: pointer;
+}
+
+.custom-file {
+    position: relative;
+    height: auto;
+    min-height: 25px;
 }
 
 /* || Media Queries */
@@ -50,7 +92,21 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+    .custom-w-name {
+    width: 17%;
+    }
 
+    .custom-w-testimonial {
+        width: 53%;
+    }
+
+    .custom-w-image {
+        width: 18%;
+    }
+
+    .custom-w-active-tests {
+        width: 12%;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -76,5 +132,21 @@
 @media only screen and (min-width: 1200px) {
     .custom-select-width {
         width: 50%;
+    }
+
+    .custom-w-name {
+        width: 15%;
+    }
+
+    .custom-w-testimonial {
+        width: 50%;
+    }
+
+    .custom-w-image {
+        width: 20%;
+    }
+
+    .custom-w-active-tests {
+        width: 15%;
     }
 }

@@ -9,11 +9,15 @@ from django.template.loader import render_to_string
 from checkout.models import Order
 from products.models import Product
 from contact.models import EmailInfo
+from home.models import (
+    LandingImage,
+)
 from .forms import (
     ProductForm,
     ProductFeatureFormset,
     ProductImageFormset,
-    DeliveryFormset
+    DeliveryFormset,
+    TestimonialFormset
 )
 
 
@@ -116,6 +120,36 @@ def admin_edit_delivery(request):
         formset = DeliveryFormset()
 
     template = 'site_admin/admin_delivery.html'
+    context = {
+        'formset': formset,
+    }
+
+    return render(request, template, context)
+
+
+def admin_edit_testimonials(request):
+    """
+    A view to Edit home screen testimonials.
+    """
+
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        formset = TestimonialFormset(request.POST, request.FILES)
+        if formset.is_valid():
+            formset.save()
+            messages.success(request, 'Successfully updated testimonials!')
+            return redirect(reverse('admin_edit_testimonials'))
+        else:
+            messages.error(request,
+                           ('Failed to update testimonials. '
+                            'Please ensure the form is valid.'))
+    else:
+        formset = TestimonialFormset()
+
+    template = 'site_admin/admin_testimonial.html'
     context = {
         'formset': formset,
     }

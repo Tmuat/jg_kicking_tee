@@ -1,0 +1,7 @@
+{% if widget.is_initial %}
+<p class="mb-1">Currently</p>
+<img width="96" height="96" class="rounded shadow-sm" src="{{ widget.value.url }}">
+
+{% if not widget.required %}
+{% endif %}
+{% endif %}

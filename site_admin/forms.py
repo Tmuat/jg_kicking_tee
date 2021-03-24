@@ -113,7 +113,7 @@ class TestimonialForm(forms.ModelForm):
     testimonial = forms.CharField(
         max_length=500,
         widget=forms.Textarea(
-            attrs={'rows': 6, }
+            attrs={'rows': 9, }
         )
     )
 
@@ -125,7 +125,7 @@ class TestimonialForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs[
-                'class'] = 'border-0 rounded-0 w-100 h-100 no-active new-image'
+                'class'] = 'border-0 rounded-0 w-100 h-100 no-active'
 
 
 TestimonialFormset = forms.modelformset_factory(
