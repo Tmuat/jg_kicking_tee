@@ -4,7 +4,8 @@ from .views import (
     admin_edit_delivery,
     all_orders,
     dispatch_orders,
-    complete_orders
+    complete_orders,
+    order_detail
 )
 
 urlpatterns = [
@@ -18,6 +19,9 @@ urlpatterns = [
     path('orders/',
          all_orders,
          name='admin_orders'),
+    path('order/<order_number>/',
+         order_detail,
+         name='order_detail'),
     path('dispatch/',
          dispatch_orders,
          name='dispatch_orders'),

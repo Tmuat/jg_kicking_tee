@@ -163,6 +163,21 @@ def all_orders(request):
     return render(request, template_name, context)
 
 
+def order_detail(request, order_number):
+    """
+    A view to show individual order details
+    """
+
+    order = get_object_or_404(Order, order_number=order_number)
+
+    template = 'site_admin/admin_order_detail.html'
+    context = {
+        'order': order,
+    }
+
+    return render(request, template, context)
+
+
 def dispatch_orders(request):
     """
     Change the status of orders to dispatched.
