@@ -5,6 +5,16 @@
     <link rel="stylesheet" href="{% static 'site_admin/css/site_admin.css' %}">
 {% endblock %}
 
+{% block extra_menu %}
+<li class="nav-item">
+    <a class="nav-link active"
+        href="{% url 'order_detail' order.order_number %}">
+        <i class="far fa-edit"></i>
+        Order Detail
+    </a>
+</li>
+{% endblock %}
+
 {% block content %}
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div
