@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mass_mail, BadHeaderError
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
@@ -9,9 +10,6 @@ from django.template.loader import render_to_string
 from checkout.models import Order
 from products.models import Product
 from contact.models import EmailInfo
-from home.models import (
-    LandingImage,
-)
 from .forms import (
     ProductForm,
     ProductFeatureFormset,
@@ -21,6 +19,7 @@ from .forms import (
 )
 
 
+@staff_member_required
 def admin_home(request):
     """
     A view to return the admin home page.
@@ -48,6 +47,7 @@ def admin_home(request):
     return render(request, template, context)
 
 
+@staff_member_required
 def admin_edit_product(request, product_slug):
     """
     A view to Edit a product in the store.
@@ -97,6 +97,7 @@ def admin_edit_product(request, product_slug):
     return render(request, template, context)
 
 
+@staff_member_required
 def admin_edit_delivery(request):
     """
     A view to Edit delivery options.
@@ -127,6 +128,7 @@ def admin_edit_delivery(request):
     return render(request, template, context)
 
 
+@staff_member_required
 def admin_edit_testimonials(request):
     """
     A view to Edit home screen testimonials.
@@ -157,6 +159,7 @@ def admin_edit_testimonials(request):
     return render(request, template, context)
 
 
+@staff_member_required
 def all_orders(request):
     """
     A view to show all orders, including filtering and search queries
@@ -197,6 +200,7 @@ def all_orders(request):
     return render(request, template_name, context)
 
 
+@staff_member_required
 def order_detail(request, order_number):
     """
     A view to show individual order details
@@ -212,6 +216,7 @@ def order_detail(request, order_number):
     return render(request, template, context)
 
 
+@staff_member_required
 def dispatch_orders(request):
     """
     Change the status of orders to dispatched.
@@ -254,6 +259,7 @@ def dispatch_orders(request):
     return redirect(redirect_url)
 
 
+@staff_member_required
 def complete_orders(request):
     """
     Change the status of orders to complete.

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 
 from .models import UserProfile
@@ -7,7 +7,9 @@ from checkout.models import Order
 
 
 def profile(request):
-    """ Display the user's profile. """
+    """
+    Display the user's profile.
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
@@ -35,6 +37,10 @@ def profile(request):
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
+
+    if not order.user_profile.user == request.user:
+        messages.error(request, 'Sorry, this is not your order.')
+        return redirect(reverse('home'))
 
     messages.info(request, (
         f'This is a past confirmation for order number {order_number}. '
