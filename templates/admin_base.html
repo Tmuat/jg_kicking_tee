@@ -5,6 +5,7 @@
 {% url 'admin_edit_product' product.slug as admin_edit_url %}
 {% url 'admin_edit_delivery' as admin_edit_delivery %}
 {% url 'admin_edit_testimonials' as admin_edit_testimonials %}
+{% url 'admin_edit_stock' product.slug as admin_edit_stock %}
 
 <!doctype html>
 <html lang="en">
@@ -105,6 +106,13 @@
                                 href="{% url 'admin_edit_product' product.slug %}">
                                 <i class="far fa-edit"></i>
                                 Edit Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.get_full_path == admin_edit_stock %}active{% endif %}"
+                                href="{% url 'admin_edit_stock' product.slug %}">
+                                <i class="fas fa-layer-group"></i>
+                                Product Stock
                             </a>
                         </li>
                         <li class="nav-item">

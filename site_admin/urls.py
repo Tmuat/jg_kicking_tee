@@ -6,7 +6,8 @@ from .views import (
     dispatch_orders,
     complete_orders,
     order_detail,
-    admin_edit_testimonials
+    admin_edit_testimonials,
+    stock_levels
 )
 
 urlpatterns = [
@@ -32,4 +33,7 @@ urlpatterns = [
     path('edit-testimonials/',
          admin_edit_testimonials,
          name='admin_edit_testimonials'),
+    path('stock/<product_slug>/',
+         stock_levels,
+         name='admin_edit_stock'),
 ]
