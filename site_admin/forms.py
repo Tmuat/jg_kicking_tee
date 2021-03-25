@@ -3,11 +3,11 @@ from django import forms
 from products.models import (
     Product,
     ProductFeature,
-    ProductImage
+    ProductImage,
+    ProductStock
 )
 from checkout.models import DeliveryOptions
 from home.models import (
-    LandingImage,
     Testimonial
 )
 from .widgets import (
@@ -21,6 +21,18 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = 'name', 'description', 'price'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'
+
+
+class ProductStockForm(forms.ModelForm):
+
+    class Meta:
+        model = ProductStock
+        fields = 'stock_quantity',
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

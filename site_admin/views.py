@@ -8,14 +8,15 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.template.loader import render_to_string
 
 from checkout.models import Order
-from products.models import Product
+from products.models import Product, ProductStock
 from contact.models import EmailInfo
 from .forms import (
     ProductForm,
     ProductFeatureFormset,
     ProductImageFormset,
     DeliveryFormset,
-    TestimonialFormset
+    TestimonialFormset,
+    ProductStockForm
 )
 
 
@@ -211,6 +212,41 @@ def order_detail(request, order_number):
     template = 'site_admin/admin_order_detail.html'
     context = {
         'order': order,
+    }
+
+    return render(request, template, context)
+
+
+@staff_member_required
+def stock_levels(request, product_slug):
+    """
+    A view to show individual product stock levels
+    """
+
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    initial_product = get_object_or_404(Product, slug=product_slug)
+
+    product_stock = get_object_or_404(ProductStock, product=initial_product)
+
+    form = ProductStockForm(instance=product_stock)
+
+    if request.method == 'POST':
+        form = ProductStockForm(request.POST, instance=product_stock)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated stock!')
+            return redirect(reverse('admin_home'))
+        else:
+            messages.error(request,
+                           ('Failed to update stock. '
+                            'Please ensure the form is valid.'))
+
+    template = 'site_admin/admin_product_stock.html'
+    context = {
+        'form': form,
     }
 
     return render(request, template, context)

@@ -1,0 +1,39 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'site_admin/css/site_admin.css' %}">
+{% endblock %}
+
+{% block content %}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-3 px-md-4">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pl-2 pl-md-0 pr-2 pr-md-0 pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Product Stock</h1>
+    </div>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <form method="POST" action="{% url 'admin_edit_stock' product.slug %}" class="form mb-2 w-100">
+                {% csrf_token %}
+
+                <!-- Product Form -->
+                <div class="col-12 col-md-6 col-lg-4 px-0 px-xl-5 text-center">
+                    {{ form|crispy }}
+                </div>
+                <!-- Product End -->
+
+                <div class="col-12 col-md-6 col-lg-4 text-right mt-2 mb-3">
+                    <a class="btn bg-yellow border-black rounded-0 btn-text-sm mt-2 mt-sm-0" href="{% url 'admin_home' %}">Cancel</a>
+                    <button class="btn bg-black border-yellow rounded-0 btn-text-sm mt-2 mt-sm-0" type="submit">Update
+                        Stock</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'site_admin/js/edit_delivery.js' %}"></script>
+{% endblock %}
