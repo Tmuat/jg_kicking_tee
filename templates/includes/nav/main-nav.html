@@ -3,8 +3,15 @@
         <li class="nav-item menu-item-1 {% if request.get_full_path == home_url %}active{% endif %}">
             <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
-        <li class="nav-item menu-item-2">
-            <a class="nav-link" href="{% url 'home' %}#about">About</a>
+        <li class="nav-item dropdown menu-item-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                JimmyG Tee
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'home' %}#about">About</a>
+                <a class="dropdown-item" href="#">My Story</a>
+            </div>
         </li>
         <li class="nav-item menu-item-3">
             <a class="nav-link" href="{% url 'home' %}#gallery">Gallery</a>
