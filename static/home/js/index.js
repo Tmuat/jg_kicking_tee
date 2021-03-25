@@ -36,8 +36,9 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(window).scroll(function () {
         var Scroll = $(window).scrollTop() + 1,
-            SectionOneOffset = $('#gallery').offset().top,
-            SectionTwoOffset = $('#testimonials').offset().top;
+            SectionOneOffset = $('#about').offset().top,
+            SectionTwoOffset = $('#gallery').offset().top,
+            SectionThreeOffset = $('#testimonials').offset().top;
 
         if (Scroll >= SectionOneOffset) {
             $(".menu-item-1").removeClass("active");
@@ -52,6 +53,14 @@ $(document).ready(function () {
             $(".menu-item-3").addClass("active");
         } else {
             $(".menu-item-3").removeClass("active");
+        }
+        if (Scroll >= SectionThreeOffset) {
+            $(".menu-item-1").removeClass("active");
+            $(".menu-item-2").removeClass("active");
+            $(".menu-item-3").removeClass("active");
+            $(".menu-item-4").addClass("active");
+        } else {
+            $(".menu-item-4").removeClass("active");
         }
     });
 });
