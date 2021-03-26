@@ -43,8 +43,8 @@
         <li class="nav-item menu-item-2">
             <a class="nav-link" href="{% url 'home' %}#about">About</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="">My Story</a>
+        <li class="nav-item {% if request.get_full_path == my_story %}active{% endif %}">
+            <a class="nav-link" href="{% url 'my_story' %}">My Story</a>
         </li>
         <li class="nav-item menu-item-3">
             <a class="nav-link" href="{% url 'home' %}#gallery">Gallery</a>
