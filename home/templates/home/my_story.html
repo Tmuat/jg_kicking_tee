@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="story-bg" style="background: url('{% static 'images/story/jg-8.jpg' %}');">
+    <div class="half-overlay">
+        <div class="container-fluid half-landing-height">
+            <div class="row half-landing-height">
+                <div class="col-12 col-sm-11 col-md-9 col-lg-8 col-xl-7 my-auto mx-auto p-3 text-center">
+                    <h1 class="landing-text logo-font text-custom-yellow story-header">My Story</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-11 col-md-12 mx-auto text-justify">
+            <div class="pt-4 pb-3">
+                <p>Fresh out of school, it’s 2002 and I have been recruited into the Wellington Rugby Academy in New Zealand.  I was about to find out that Wellington is one of the windiest cities in New Zealand!  Every time I place my ball on the cone (yes, I used to kick off the normal training cones) it would blow off.  I had to make a change.  I had seen the likes of Andrew Mertens and Tony Brown using a yellow tee, so I bought what was then called a <strong>'Simpkin Tee'</strong> and my kicking changed forever.  Fast forward to March 11 2020 and I get this message on Facebook… 
+                </p>
+                <p>
+                ’You don’t know me, but I’m your biggest fan and your success has been mine.  You see, I designed and made your kicking tee.  My name is George Simpkin and I have been meaning to contact you for years as I have watched your remarkable career unfold.  Unfortunately it’s getting late and I have only a few months to live. However the best way would be for you to reply (if you wish) and give me a contact number and I will ring you, I believe it will be an interesting conversation.’
+                </p>
+                <p>
+                Over the next few months we had some amazing conversations, but at the top of the list of things to talk about was George asking me if I would like the rights to reproduce the Simpkin Kicking Tee under my name.
+                </p>
+                <p>
+                And so, the Jimmy G Tee was put into motion. The Simkin Tee AKA Jimmy G Tee has been used by some of the greatest kickers of all time; Andrew Mertens, Joel Stransky, John Eales, Jannie de Beer, Percy Montgomery, Tony Brown, Gavin Henson, Ben Blair and many more have all used this tee at some stage in their careers.  Simon Culhane from The All Blacks holds the RWC record for the most kicks in the ’95 RWC; he kicked 20 kicks from the tee in one game.
+                </p>
+                <p>
+                This tee has become my most reliable and trusted bit of kit over the last 19 years and as a professional kicker I have scored over 3000 points and had many memorable match winning kicks using this tee. Sadly, George passed away on May 7th 2020, but thanks to  George, who was a true pioneer of the game, I have the opportunity to reproduce this tee under my own name and help you create your own story and own success kicking off the Jimmy G Tee. 
+                </p>
+            </div>
+            <div class="pb-5 text-center">
+                <p><strong>Fancy trying out the kicking that changed my kicking...</strong></p>
+                <a href="{% url 'product_detail' product.slug %}"
+                    class="btn btn-lg rounded-0 bg-yellow border-black logo-font shop-now-btn">Shop
+                    Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

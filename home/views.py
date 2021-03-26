@@ -31,3 +31,17 @@ def index(request):
     template = 'home/index.html'
 
     return render(request, template, context)
+
+
+def my_story(request):
+    """
+    A view to return the my story page.
+    """
+
+    context = {
+
+    }
+
+    template = 'home/my_story.html'
+
+    return render(request, template, context)

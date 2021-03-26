@@ -37,6 +37,34 @@
     background: linear-gradient(180deg, rgba(2,0,36,0.6) 19%, rgba(255,193,58,0.5) 100%);
 }
 
+.story-bg {
+             min-height: calc(70vh - 80px);
+                 height: auto;
+                  width: 100%;
+             margin-top: 80px;
+    background-position: center !important;
+      background-repeat: no-repeat !important;
+        background-size: cover !important;
+             -o-object-fit: cover !important;
+                object-fit: cover !important;
+               overflow: hidden;
+}
+
+.half-landing-height {
+    min-height: calc(70vh - 80px);
+        height: auto;
+}
+
+.half-overlay {
+    min-height: calc(70vh - 80px);
+        height: auto;
+         width: 100vw;
+    background: rgba(2,0,36,0.5);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(19%, rgba(2,0,36,0.6)), to(rgba(255,193,58,0.5)));
+    background: -o-linear-gradient(top, rgba(2,0,36,0.6) 19%, rgba(255,193,58,0.5) 100%);
+    background: linear-gradient(180deg, rgba(2,0,36,0.6) 19%, rgba(255,193,58,0.5) 100%);
+}
+
 /* || Landing Card */
 
 .card-border {
@@ -45,6 +73,12 @@
 
 .landing-header {
     font-size: 40px;
+}
+
+.story-header {
+    font-size: 60px;
+    font-weight: 900;
+    text-shadow: 1px 1px 1px #000;
 }
 
 /* || Buttons */
