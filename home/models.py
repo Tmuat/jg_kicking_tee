@@ -58,3 +58,16 @@ class Testimonial(UpdatedAndCreated):
 
     def __str__(self):
         return self.name
+
+
+class InstructionalVideo(UpdatedAndCreated):
+    video = models.FileField(upload_to="videos/instructional-videos",
+                              null=True,
+                              blank=False)
+
+    class Meta:
+        verbose_name_plural = "Instructional Video"
+        ordering = ['video']
+
+    def __str__(self):
+        return str(self.pk)

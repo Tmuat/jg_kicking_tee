@@ -2,7 +2,7 @@ from random import shuffle, sample
 
 from django.shortcuts import render
 
-from .models import LandingImage, Testimonial
+from .models import LandingImage, Testimonial, InstructionalVideo
 
 
 def index(request):
@@ -23,9 +23,12 @@ def index(request):
     testimonial_qs = list(Testimonial.objects.filter(active=True))
     shuffle(testimonial_qs)
 
+    videos = InstructionalVideo.objects.all()
+
     context = {
         'images': images_qs_sample,
         'testimonials': testimonial_qs,
+        'videos': videos,
     }
 
     template = 'home/index.html'
