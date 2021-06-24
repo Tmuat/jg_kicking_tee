@@ -38,6 +38,25 @@ class StripeWH_Handler:
             settings.NO_REPLY_EMAIL,
             [cust_email]
         )
+    
+    def _send_order_email(self, order):
+        """
+        Send the owner an order email
+        """
+        cust_email = order.email
+        subject = render_to_string(
+            'checkout/order_emails/order_email_subject.txt',
+            {'order': order})
+        body = render_to_string(
+            'checkout/order_emails/order_email_body.txt',
+            {'order': order, })
+
+        send_mail(
+            subject,
+            body,
+            settings.NO_REPLY_EMAIL,
+            [settings.NO_REPLY_EMAIL]
+        )
 
     def handle_event(self, event):
         """
@@ -113,6 +132,7 @@ class StripeWH_Handler:
                 time.sleep(1)
         if order_exists:
             self._send_confirmation_email(order)
+            self._send_order_email(order)
             return HttpResponse(
                 content=(f'Webhook received: {event["type"]} | SUCCESS: '
                          'Verified order already in database'),
@@ -154,6 +174,7 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
+        self._send_order_email(order)
         return HttpResponse(
             content=(f'Webhook received: {event["type"]} | SUCCESS: '
                      'Created order in webhook'),
