@@ -104,21 +104,21 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         },
-        'file': {
-            'level': LOGLEVEL,
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, "logs/logs.txt"),
-            'formatter': 'verbose',
-        },
+        # 'file': {
+        #     'level': LOGLEVEL,
+        #     'class': 'logging.FileHandler',
+        #     'filename': os.path.join(BASE_DIR, "logs/logs.txt"),
+        #     'formatter': 'verbose',
+        # },
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console',],
             'propagate': True,
         }
     },
     'root': {
-        'handlers': ['console', 'file'],
+        'handlers': ['console',],
         'level': LOGLEVEL,
     },
 }
