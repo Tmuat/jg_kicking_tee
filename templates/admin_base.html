@@ -122,6 +122,13 @@
                                 Edit Delivery Options
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.get_full_path == admin_edit_video %}active{% endif %}"
+                                href="{% url 'admin_edit_video' %}">
+                                <i class="fas fa-video"></i>
+                                Edit Instructional Video
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>

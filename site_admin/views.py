@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.template.loader import render_to_string
 
 from checkout.models import Order
+from home.models import InstructionalVideo
 from products.models import Product, ProductStock
 from contact.models import EmailInfo
 from .forms import (
@@ -16,7 +17,8 @@ from .forms import (
     ProductImageFormset,
     DeliveryFormset,
     TestimonialFormset,
-    ProductStockForm
+    ProductStockForm,
+    VideoForm,
 )
 
 
@@ -245,6 +247,39 @@ def stock_levels(request, product_slug):
                             'Please ensure the form is valid.'))
 
     template = 'site_admin/admin_product_stock.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@staff_member_required
+def video(request):
+    """
+    A view to change the instructional video
+    """
+
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    initial_video = InstructionalVideo.objects.first()
+
+    form = VideoForm(instance=initial_video)
+
+    if request.method == 'POST':
+        form = VideoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added video!')
+            return redirect(reverse('admin_home'))
+        else:
+            messages.error(request,
+                           ('Failed to update video. '
+                            'Please ensure the form is valid.'))
+
+    template = 'site_admin/admin_video.html'
     context = {
         'form': form,
     }
