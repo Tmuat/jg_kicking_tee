@@ -88,6 +88,7 @@ DJANGO_APPS = [
     'django.contrib.sites',
     "django.contrib.humanize",
     "django.forms",
+    "django.contrib.sitemaps",
 ]
 
 THIRD_PARTY_APPS = [

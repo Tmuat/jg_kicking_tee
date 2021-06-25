@@ -16,6 +16,7 @@ Including another URLconf
 import debug_toolbar
 
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -34,6 +35,9 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
     path('profile/', include('users.urls')),
     path('site-admin/', include('site_admin.urls')),
+
+    # path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+    #     name='django.contrib.sitemaps.views.sitemap')
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
